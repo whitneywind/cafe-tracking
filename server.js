@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
     res.send('welcome to the server')
 })
 
+app.get('/api/v1', (req, res) => {
+    res.json({ msg: 'this is /api/v1' })
+})
+
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/cafes', cafeRouter)
 

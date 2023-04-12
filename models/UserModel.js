@@ -1,4 +1,7 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -17,8 +20,23 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter a valid password'],
         minLength: 3,
-        trim: true
+        trim: true,
+        select: false
     }
 })
+
+UserSchema.pre('save', async function (next) {
+    try {
+        const salted = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salted);
+        next()
+    } catch (err) {
+        next(err)
+    }
+})
+
+UserSchema.methods.createJWT = function () {
+    return jwt.sign({ userId: this._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_LIFETIME })
+}
 
 export default mongoose.model('User', UserSchema);

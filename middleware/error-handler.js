@@ -12,6 +12,5 @@ export const errorHandlerMiddleware = (err, req, res, next) => {
         defaultError.statusCode = 400
         defaultError.msg = `Email: ${existingEmail} is already registered`
     }
-    // res.status(defaultError.statusCode).json({ msg: err })
     res.status(defaultError.statusCode).json({ msg: defaultError.msg })
 }

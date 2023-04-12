@@ -8,7 +8,7 @@ const Landing = () => {
     <Wrapper>
         <div className="containing">
             <nav>
-                <Link to="/dashboard"><img src={coffeeLogo} class="logo" alt="logo" /></Link>
+                <Link to="/dashboard"><img src={coffeeLogo} className="logo" alt="logo" /></Link>
             </nav>
             <div className="container page">
                 <div className="info">

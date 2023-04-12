@@ -6,7 +6,15 @@ export const register = async (req, res, next) => {
     const { username, email, password } = req.body;
     try {
         const user = await User.create(req.body);
-        res.status(201).json({ user })
+        const token = user.createJWT()
+        res.status(201)
+        .json({ 
+            user: { 
+                email: user.email,
+                username: user.username
+            }, 
+            token
+        })
     } catch (error) {
         // gets passed on to next middleware (in this case the error-handler middleware)
         if (!username || !email || !password) {

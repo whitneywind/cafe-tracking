@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Wrapper from '../assets/wrappers/RegisterWrapper.js'
 import coffeeLogo from "../assets/images/coffee.svg"
 import Alert from "../components/Alert"
 import { useAppContext } from "../context/appContext.js"
+import { useNavigate } from 'react-router-dom'
 
 
 const initialUserState = {
@@ -18,10 +19,18 @@ const Register = () => {
     const { 
         isLoading,
         showAlert,
-        showDangerAlert,
-        showSuccessAlert,
-        clearAlert, 
+        displayAlert,
+        clearAlert,
+        registerUser,
+        user 
     } = useAppContext();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            setTimeout(() => navigate('/dashboard'), 3000)
+        }
+    }, [user])
 
     const toggleIsMember = () => {
         setUserValues({...userValues, isMember: !userValues.isMember});
@@ -35,24 +44,29 @@ const Register = () => {
         e.preventDefault();
         const { username, email, password, isMember } = userValues;
         if ((!username && !isMember) || !email || !password ) {
-            showDangerAlert();
+            displayAlert();
             clearAlert()
             toggleIsMember();
             return;
+        }        
+
+        const currentUser = { username, email, password }
+        if (isMember) {
+            console.log('already a member')
+        } else {
+            registerUser(currentUser);
         }
-        showSuccessAlert();
-        clearAlert();
-        console.log(userValues);
+        
     }
 
   return (
     <Wrapper>
         <form className="form" onSubmit={onSubmit}>
             <img src={coffeeLogo} className="logo" alt="logo" />
-            <h1>Login</h1>
+            <h1>{userValues.isMember ? 'Login' : 'Register'}</h1>
             {showAlert && <Alert />}
 
-            {userValues.isMember && (
+            {!userValues.isMember && (
                 <div className="form-row">
                 <label htmlFor="username" className="form-label">username</label>
                 <input type="text" name="username" value={userValues.username} onChange={onChange} className="form-input" />
@@ -67,7 +81,7 @@ const Register = () => {
                 <input type="password" name="password" value={userValues.password} onChange={onChange} className="form-input" />
             </div>
 
-            <button type='submit' className="btn btn-submit" onClick={toggleIsMember}>{userValues.isMember ? 'Login' : 'Register'}</button>
+            <button type='submit' className="btn btn-submit" disabled={isLoading}>{userValues.isMember ? 'Login' : 'Register'}</button>
 
             <button type="button" onClick={toggleIsMember} className="member-btn">{userValues.isMember ? 'Already a member?' : 'Not a member yet?'}</button>
         </form>

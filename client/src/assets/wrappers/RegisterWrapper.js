@@ -12,7 +12,8 @@ const Wrapper = styled.section`
         margin: 6% auto;
         transition: all .3s ease-in;
         border-radius: 0.25rem;
-        color: var(--mainBlack)
+        color: var(--mainBlack);
+        border-top: 8px solid var(--mainColor5);
 
     }
     .form:hover {
