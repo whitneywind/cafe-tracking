@@ -40,6 +40,8 @@ const AppProvider = ({ children }) => {
         }, 2500);
     }
 
+
+    // TO-DO make one function to both register and login users
     const registerUser = async (currentUser) => {
         dispatch({ type: 'REGISTER_USER_BEGIN' });
         try {
@@ -54,11 +56,37 @@ const AppProvider = ({ children }) => {
             addToLocalStorage(response.data)
             // clearLocalStorage()
         } catch (error) {
-            dispatch({ type: 'REGISTER_USER_ERROR', payload: {
-                msg: error.response.data.msg
+            dispatch({ 
+                type: 'REGISTER_USER_ERROR',
+                payload: {
+                    msg: error.response.data.msg
             } })
         }
         clearAlert();
+    }
+
+    const loginUser = async (currentUser) => {
+        dispatch({ type: 'LOGIN_USER_BEGIN' })
+        try {
+            const response = await axios.post('/api/v1/auth/login', currentUser);
+            const { user, token } = response.data;
+            dispatch({
+                type: 'LOGIN_USER_SUCCESS',
+                payload: {
+                    user,
+                    token
+                }
+            })
+            addToLocalStorage(response.data)
+        } catch (error) {
+            dispatch({
+                type: 'LOGIN_USER_ERROR',
+                payload: {
+                    msg: error.response.data.msg
+                }
+            })
+        }
+        clearAlert()
     }
 
     return (
@@ -67,7 +95,10 @@ const AppProvider = ({ children }) => {
                 ...state, 
                 displayAlert,
                 clearAlert,
-                registerUser, 
+                registerUser,
+                addToLocalStorage,
+                clearLocalStorage,
+                loginUser
         }}>
             {children}
         </AppContext.Provider>

@@ -2,6 +2,7 @@ import express from 'express'
 const app = express()
 import dotenv from 'dotenv'
 dotenv.config()
+import 'express-async-errors'
 
 import connectDB from './database/connect.js'
 
@@ -12,6 +13,11 @@ import cafeRouter from './routes/cafeRoutes.js'
 // middleware imports
 import { notFoundMiddleware } from './middleware/not-found.js'
 import { errorHandlerMiddleware } from './middleware/error-handler.js'
+import morgan from 'morgan'
+
+if (process.env.NODE_ENV !== 'production') {
+    app.use(morgan('dev'))
+}
 
 app.use(express.json())
 

@@ -22,7 +22,8 @@ const Register = () => {
         displayAlert,
         clearAlert,
         registerUser,
-        user 
+        user,
+        loginUser 
     } = useAppContext();
     const navigate = useNavigate();
 
@@ -30,7 +31,7 @@ const Register = () => {
         if (user) {
             setTimeout(() => navigate('/dashboard'), 3000)
         }
-    }, [user])
+    }, [user, navigate])
 
     const toggleIsMember = () => {
         setUserValues({...userValues, isMember: !userValues.isMember});
@@ -51,8 +52,9 @@ const Register = () => {
         }        
 
         const currentUser = { username, email, password }
+
         if (isMember) {
-            console.log('already a member')
+            loginUser(currentUser)
         } else {
             registerUser(currentUser);
         }
@@ -83,7 +85,7 @@ const Register = () => {
 
             <button type='submit' className="btn btn-submit" disabled={isLoading}>{userValues.isMember ? 'Login' : 'Register'}</button>
 
-            <button type="button" onClick={toggleIsMember} className="member-btn">{userValues.isMember ? 'Already a member?' : 'Not a member yet?'}</button>
+            <button type="button" onClick={toggleIsMember} className="member-btn">{!userValues.isMember ? 'Already a member?' : 'Not a member yet?'}</button>
         </form>
     </Wrapper>
   )

@@ -29,14 +29,30 @@ export const register = async (req, res, next) => {
     }
 }
 
-export const login = async (req, res) => {
-    try {
-        const user = await User.findOne(req.body.user);
-        if (user) {
-            res.status(201).json({ msg: 'user found' })
+export const login = async (req, res, next) => {
+    const customError = {
+        statusCode: 401,
+        msg: `Login Error` 
+     }
+    const { email, password } = req.body
+        const user = await User.findOne({ email }).select('+password')
+
+        if (!user) {
+            next({...customError, msg: 'no user found'})
+            return
         }
-    } catch (error) {
-        res.status(500).json({ msg: 'there was a login error' })
-    }
+
+        const isMatchingPassword = await user.comparePassword(password)
+        console.log('password matches: ', isMatchingPassword)
+
+        if (!isMatchingPassword) {
+            next({...customError, msg: 'incorrect password'})
+            return
+        }
+
+        const token = user.createJWT()
+        user.password = undefined
+        
+        res.status(200).json({ user, token })
 }
 
