@@ -60,6 +60,11 @@ const reducer = (state, action) => {
                 alertText: action.payload.msg,
                 isLoading: false
                 };
+        case 'TOGGLE_SIDEBAR':
+            return {
+                ...state,
+                showSidebar: !state.showSidebar
+            }
         default:
             throw new Error(`no such action: ${action.type}`);
     }

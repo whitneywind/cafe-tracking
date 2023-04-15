@@ -18,8 +18,8 @@ function App() {
             <SharedLayout />
           </ProtectedRoute>
         }>
-          <Route path="add-cafe" element={<AddCafe />} />
           <Route path="all-cafes" element={<AllCafes />} />
+          <Route path="add-cafe" element={<AddCafe />} />
           <Route path="profile" element={<Profile />} />
         </Route> 
         <Route path="register" element={<Register />}></Route>

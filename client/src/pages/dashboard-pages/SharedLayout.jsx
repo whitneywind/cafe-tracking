@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import Wrapper from "../../assets/wrappers/SharedLayoutWrapper"
 import Sidebar from "../../components/Sidebar"
 import SmallSidebar from "../../components/SmallSidebar"

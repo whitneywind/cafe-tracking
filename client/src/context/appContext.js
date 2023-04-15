@@ -12,7 +12,8 @@ const initialState = {
     alertText: '',
     user: user ? JSON.parse(user) : null,
     token: token || null,
-    cafeLocation: ''
+    cafeLocation: '',
+    showSidebar: false,
 }
 
 const AppContext = createContext();
@@ -38,6 +39,10 @@ const AppProvider = ({ children }) => {
         setTimeout(() => {
             dispatch({ type: 'CLEAR_ALERT' });
         }, 2500);
+    }
+
+    const toggleSmallSidebar = () => {
+        dispatch({ type: 'TOGGLE_SIDEBAR' })
     }
 
 
@@ -98,7 +103,8 @@ const AppProvider = ({ children }) => {
                 registerUser,
                 addToLocalStorage,
                 clearLocalStorage,
-                loginUser
+                loginUser,
+                toggleSmallSidebar
         }}>
             {children}
         </AppContext.Provider>

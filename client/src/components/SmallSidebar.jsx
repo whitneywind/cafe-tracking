@@ -1,34 +1,25 @@
-import { NavLink } from "react-router-dom"
 import Logo from "./Logo"
 import styled from "styled-components"
+import { useAppContext } from "../context/appContext"
+import MenuLinks from "./MenuLinks"
+import { CgCloseR } from "react-icons/cg"
 
 const SmallSidebar = () => {
+    const { showSidebar, toggleSmallSidebar } = useAppContext();
   return (
     <Wrapper>
-        <div className="sidebar-container">
+        <div className={showSidebar ? 'sidebar-container show-sidebar' : 'sidebar-container'}>
             <div className="content">
-                <button className="close-btn">btn</button>
+                <button 
+                    className="close-btn"
+                    onClick={toggleSmallSidebar}
+                >
+                    <CgCloseR />
+                </button>
                 <header>
                     <Logo />
                 </header>
-                <NavLink to='add-cafe' className="nav-link">
-                    <span className="icon">
-                        <Logo />
-                    </span>
-                    Add a Cafe
-                </NavLink>
-                <NavLink to='all-cafes' className="nav-link">
-                    <span className="icon">
-                        <Logo />
-                    </span>
-                    See All Cafes
-                </NavLink>
-                <NavLink to='profile' className="nav-link">
-                    <span className="icon">
-                        <Logo />
-                    </span>
-                    Profile
-                </NavLink>
+                <MenuLinks />
             </div>
         </div>
     </Wrapper>
@@ -40,6 +31,7 @@ const Wrapper = styled.aside`
   @media (min-width: 992px) {
     display: none;
   }
+
   .sidebar-container {
     position: fixed;
     inset: 0;
@@ -56,10 +48,10 @@ const Wrapper = styled.aside`
     opacity: 1;
   }
   .content {
-    background: var(--white);
-    width: var(--fluid-width);
+    background: #fdf7f6;
+    width: 90vw;
     height: 95vh;
-    border-radius: var(--borderRadius);
+    border-radius: 0.25rem;
     padding: 4rem 2rem;
     position: relative;
     display: flex;
@@ -73,39 +65,39 @@ const Wrapper = styled.aside`
     background: transparent;
     border-color: transparent;
     font-size: 2rem;
-    color: var(--red-dark);
+    color: var(--mainColor4);
     cursor: pointer;
   }
-  .nav-links {
+  .menu-links {
     padding-top: 2rem;
     display: flex;
     flex-direction: column;
   }
-  .nav-link {
+  .menu-link {
     display: flex;
     align-items: center;
-    color: var(--grey-500);
+    color: gray;
     padding: 1rem 0;
     text-transform: capitalize;
-    transition: var(--transition);
+    transition: 3s ease-in-out all;
   }
-  .nav-link:hover {
-    color: var(--grey-900);
+  .menu-link:hover {
+    color: gray;
   }
-  .nav-link:hover .icon {
-    color: var(--primary-500);
+  .menu-link:hover .icon {
+    color: var(--mainColor5);
   }
   .icon {
     font-size: 1.5rem;
     margin-right: 1rem;
     display: grid;
     place-items: center;
-    transition: var(--transition);
+    transition: 3s ease-in-out all;
   }
   .active {
-    color: var(--grey-900);
+    color: var(--mainColor4);
   }
   .active .icon {
-    color: var(--primary-500);
+    color: var(--mainColor5);
   }
 `
