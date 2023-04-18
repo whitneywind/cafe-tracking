@@ -10,9 +10,10 @@ const MenuLinks = () => {
                 <NavLink
                     to={path}
                     id={id}
+                    key={id}
                     className="menu-link"
                 >
-                    <span>{icon}</span>
+                    <span className="icon">{icon}</span>
                     {name}
                 </NavLink>
             )

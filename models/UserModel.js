@@ -21,6 +21,12 @@ const UserSchema = new mongoose.Schema({
         minLength: 3,
         trim: true,
         select: false
+    },
+    location: {
+        type: String,
+        trim: true,
+        minLength: 2,
+        default: 'my city'
     }
 })
 

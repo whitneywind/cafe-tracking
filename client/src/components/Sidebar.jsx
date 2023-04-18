@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import coffeeLogo from "../assets/images/coffee.svg"
+import Logo from "./Logo"
 import MenuLinks from "./MenuLinks"
 
 const Sidebar = ({ children }) => {
@@ -9,7 +9,7 @@ const Sidebar = ({ children }) => {
         <div className="sidebar-container">
             <div className="content">
                 <header>
-                    <img src={coffeeLogo} className="logo" alt="logo" />
+                    <Logo />
                 </header>
                 <MenuLinks />
             </div>
@@ -24,49 +24,54 @@ const Wrapper = styled.section`
         display: block;
 
         .sidebar-container {
-        min-height: 100vh;
-        height: 100%;
-        width: 250px;
-        background: var(--mainColor2);
-        box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
+            min-height: 100vh;
+            height: 100%;
+            width: 190px;
+            background: var(--mainColor1Alt);
+            box-shadow: 1px 0px 0px 0px rgba(245, 245, 245, 0.56);
         }
         .content {
-        position: sticky;
-        top: 0;
-        }
-        .show-sidebar {
-        margin-left: 0;
+            position: sticky;
+            top: 0;
         }
         header {
-        height: 6rem;
-        display: flex;
-        align-items: center;
-        padding-left: 2.5rem;
+            height: 6.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
         }
         .menu-links {
-        padding-top: 2rem;
-        display: flex;
-        flex-direction: column;
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-links {
+            display: flex;
+            flex-direction: column;
         }
         .menu-link {
-        display: flex;
-        align-items: center;
-        color: gray;
-        padding: 1rem 0;
-        padding-left: 2.5rem;
-        text-transform: capitalize;
+            display: flex;
+            color: var(--mainBlack);
+            padding: 1.5rem 0;
+            transition: 300ms ease-in-out all;
+            font-size: 1.2rem;
+            text-underline-offset: 3px;
         }
-        .nav-link:hover {
-        padding-left: 3rem;
+        .menu-link:hover {
+            color: #515050;
+            padding-left: 8px;
         }
         .icon {
-        font-size: 1rem;
-        margin-right: 1rem;
+        font-size: 1.5rem;
+        margin-right: 12px;
+        margin-left: 1rem;
         display: grid;
         place-items: center;
+        transition: 300ms ease-in-out all;
         }
-        .icon img {
-            width: 50%;
+        .menu-link:hover .icon {
+            color: var(--mainColor5);
         }
     }
 `

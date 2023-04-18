@@ -3,7 +3,7 @@ import User from "../models/UserModel.js"
 // these controller functions are the handler functions (callback functions) that are specified in the routing meethods in authRoutes.js
 
 export const register = async (req, res, next) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, location } = req.body;
     try {
         const user = await User.create(req.body);
         const token = user.createJWT()
@@ -11,7 +11,8 @@ export const register = async (req, res, next) => {
         .json({ 
             user: { 
                 email: user.email,
-                username: user.username
+                username: user.username,
+                location: user.location
             }, 
             token
         })
@@ -54,5 +55,27 @@ export const login = async (req, res, next) => {
         user.password = undefined
         
         res.status(200).json({ user, token })
+}
+
+export const update = async (req, res) => {
+    const { email, username, location } = req.body;
+    if (!email || !username) {
+        throw new Error('please provide all info');
+    }
+    // const user = await User.findOne({ email })
+
+    // user.email = email;
+    // user.username = username;
+    // user.location = location;
+
+    const filter = { email };
+    const update = { email, username, location };
+    const options = { new: true };
+
+    const user = await User.findOneAndUpdate(filter, update, options);
+
+    console.log(user)
+
+    res.send('update user')
 }
 

@@ -24,7 +24,7 @@ const reducer = (state, action) => {
                 ...state,
                 showAlert: true,
                 alertType: 'success',
-                alertText: 'User created!',
+                alertText: 'User created! Redirecting you now',
                 isLoading: false,
                 user: action.payload.user,
                 token: action.payload.token
@@ -47,7 +47,7 @@ const reducer = (state, action) => {
                 ...state,
                 showAlert: true,
                 alertType: 'success',
-                alertText: 'Successfully logged in!',
+                alertText: 'Success! Loading dashboard',
                 isLoading: false,
                 user: action.payload.user,
                 token: action.payload.token
@@ -60,6 +60,26 @@ const reducer = (state, action) => {
                 alertText: action.payload.msg,
                 isLoading: false
                 };
+        case 'LOGOUT_USER': 
+                return {
+                    ...state,
+                    user: null,
+                    token: null
+                }
+        case 'UPDATE_USER_SUCCESS':
+            return {
+                ...state,
+                showAlert: true,
+                alertType: 'success',
+                alertText: 'User info updated!'
+            };
+        case 'UPDATE_USER_ERROR':
+            return {
+                ...state,
+                showAlert: true,
+                alertType: 'danger',
+                alertText: action.payload.msg
+            }
         case 'TOGGLE_SIDEBAR':
             return {
                 ...state,

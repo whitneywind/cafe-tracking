@@ -23,10 +23,10 @@ const Wrapper = styled.div`
         font-weight: 600;
     }
     .alert-danger {
-        background-color: #ee6b6b;
+        background-color: #eb7d7d;
     }
     .alert-success {
-        background-color: #8ce36c;
+        background-color: #e0e0e0;
     }
 `
 

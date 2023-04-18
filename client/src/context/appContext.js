@@ -38,7 +38,7 @@ const AppProvider = ({ children }) => {
     const clearAlert = () => {
         setTimeout(() => {
             dispatch({ type: 'CLEAR_ALERT' });
-        }, 2500);
+        }, 2000);
     }
 
     const toggleSmallSidebar = () => {
@@ -94,6 +94,27 @@ const AppProvider = ({ children }) => {
         clearAlert()
     }
 
+    const updateUser = async (currentUser) => {
+        console.log(currentUser)
+        try {
+            await axios.patch('/api/v1/auth/update', currentUser);
+            dispatch({ type: 'UPDATE_USER_SUCCESS'})
+        } catch (error) {
+            dispatch({
+                type: 'UPDATE_USER_ERROR',
+                payload: {
+                    msg: error.response.data.msg
+                }
+            })
+        }
+        clearAlert();
+    }
+
+    const logoutUser = () => {
+        dispatch({ type: 'LOGOUT_USER' });
+        clearLocalStorage();
+    }
+
     return (
         <AppContext.Provider
             value={{ 
@@ -101,9 +122,11 @@ const AppProvider = ({ children }) => {
                 displayAlert,
                 clearAlert,
                 registerUser,
+                updateUser,
                 addToLocalStorage,
                 clearLocalStorage,
                 loginUser,
+                logoutUser,
                 toggleSmallSidebar
         }}>
             {children}

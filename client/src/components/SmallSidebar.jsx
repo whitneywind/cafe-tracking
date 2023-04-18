@@ -17,7 +17,7 @@ const SmallSidebar = () => {
                     <CgCloseR />
                 </button>
                 <header>
-                    <Logo />
+                    <p>Menu</p>
                 </header>
                 <MenuLinks />
             </div>
@@ -65,34 +65,38 @@ const Wrapper = styled.aside`
     background: transparent;
     border-color: transparent;
     font-size: 2rem;
-    color: var(--mainColor4);
+    color: #383838;
     cursor: pointer;
   }
+  p {
+    color: #383838;
+    font-size: 3rem;
+  }
   .menu-links {
-    padding-top: 2rem;
     display: flex;
     flex-direction: column;
   }
   .menu-link {
     display: flex;
     align-items: center;
-    color: gray;
-    padding: 1rem 0;
-    text-transform: capitalize;
-    transition: 3s ease-in-out all;
+    color: #4c4b4b;
+    padding: 1.5rem 0;
+    transition: 500ms ease-in-out all;
+    font-size: 1.7rem;
+    text-underline-offset: 5px;
   }
   .menu-link:hover {
-    color: gray;
+    color: #929090;
   }
   .menu-link:hover .icon {
     color: var(--mainColor5);
   }
   .icon {
-    font-size: 1.5rem;
-    margin-right: 1rem;
+    font-size: 1.8rem;
+    margin-right: 0.7rem;
     display: grid;
     place-items: center;
-    transition: 3s ease-in-out all;
+    transition: 500ms ease-in-out all;
   }
   .active {
     color: var(--mainColor4);

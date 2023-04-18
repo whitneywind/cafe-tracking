@@ -1,14 +1,15 @@
 import styled from "styled-components"
 import { useAppContext } from "../context/appContext"
 import Logo from "./Logo"
-import { TbLayoutSidebarRightExpand } from "react-icons/tb"
+import { BsReverseLayoutTextSidebarReverse } from "react-icons/bs"
 import {IoIosArrowDropdown} from "react-icons/io"
 import { RiUserHeartLine } from "react-icons/ri"
 import { useState } from "react"
 
 const Navbar = () => {
-    const { toggleSmallSidebar, user } = useAppContext();
+    const { toggleSmallSidebar, user, logoutUser } = useAppContext();
     const [showDropdown, setShowDropdown] = useState(false);
+
   return (
     <Wrapper>
        <div className="nav-center">
@@ -17,11 +18,11 @@ const Navbar = () => {
                 className="toggle-btn"
                 onClick={toggleSmallSidebar}
             >
-                <TbLayoutSidebarRightExpand />
+                <BsReverseLayoutTextSidebarReverse />
             </button>
-            <div>
+            <div className="logo-container">
                 <Logo className="logo" />
-                <h3 className="logo-text">Dashboard</h3>
+                <p className="logo-text">Dashboard</p>
             </div>
         <div className="btn-container">
             <button 
@@ -30,15 +31,16 @@ const Navbar = () => {
                 onClick={() => setShowDropdown(!showDropdown)}
             >
                 <RiUserHeartLine />
-                    {user?.username}
+                {user?.username}
                 <IoIosArrowDropdown />
             </button>
             <div className={showDropdown ? "dropdown show-dropdown" : "dropdown"}>
                 <button 
                     type="button"
                     className="dropdown-btn"
+                    onClick={() => logoutUser()}
                 >
-                    logout
+                    Logout
                 </button>
             </div>
         </div>
@@ -53,8 +55,8 @@ const Wrapper = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1);
-  background: var(--mainColor2);
+  box-shadow: 1px 0px 0px 0px rgba(245, 245, 245, 0.56);
+  background: var(--mainColor1Alt);
   
   .logo {
     display: flex;
@@ -70,8 +72,8 @@ const Wrapper = styled.nav`
   .toggle-btn {
     background: transparent;
     border-color: transparent;
-    font-size: 1.75rem;
-    color: var(--mainColor4);
+    font-size: 2.5rem;
+    color: var(--mainBlack);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -80,23 +82,32 @@ const Wrapper = styled.nav`
     position: relative;
   }
   .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 0 0.7rem;
     cursor: pointer;
     color: var(--mainBlack);
     background-color: var(--mainColor1);
-    box-shadow: var(--shadow-1);
-    border: transparent;
-    letter-spacing: 1px;
-    padding: 1rem;
+    letter-spacing: 1.5px;
+    padding: 0.7rem 1rem;
     text-decoration: none;
+    border-radius: 0.25rem;
+    border: 2px solid var(--mainColor4);
+    box-shadow: 1px 1px 0 var(--mainColor4), 2px 2px 0 var(--mainColor4), 3px 3px 0 var(--mainColor4);
+  }
+  .btn:active {
+    box-shadow: 0 0 0 0;
   }
   .dropdown {
     position: absolute;
-    top: 40px;
+    top: 60px;
     left: 0;
     width: 100%;
-    background: var(--mainColor1Alt);
+    background: var(--mainColor4);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);;
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
     padding: 0.5rem;
     text-align: center;
     visibility: hidden;
@@ -108,14 +119,24 @@ const Wrapper = styled.nav`
   .dropdown-btn {
     background: transparent;
     border-color: transparent;
-    color: var(--mainBlack);
-    letter-spacing: 1px;
-    text-transform: capitalize;
+    color: white;
+    letter-spacing: 1.5px;
     cursor: pointer;
   }
+  .logo-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
   .logo-text {
-    display: none;
+    display: block;
     margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--mainBlack)
+  }
+  .logo {
+    width: 2.1rem;
   }
   @media (min-width: 992px) {
     position: sticky;
@@ -124,7 +145,6 @@ const Wrapper = styled.nav`
     .toggle-btn {
         display: none;
     }
-
     .nav-center {
       width: 90%;
     }
