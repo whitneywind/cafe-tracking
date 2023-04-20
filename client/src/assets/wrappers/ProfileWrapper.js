@@ -9,6 +9,11 @@ const Wrapper = styles.div`
     padding: 1rem 2rem 2rem;
     font-size: 1.4rem;
     border-radius: 0.25rem;
+    letter-spacing: 1px;
+  }
+  .alert {
+    width: clamp(200px, 50%, 450px);
+    margin: 2rem auto;
   }
   p {
     font-size: 1.8rem;
@@ -19,8 +24,6 @@ const Wrapper = styles.div`
     flex-direction: column;
     flex-wrap: wrap;
     gap: 2rem;
-    justify-content: space-between;
-
   }
   .form-row {
     margin: 0 auto;
@@ -33,6 +36,7 @@ const Wrapper = styles.div`
     font-size: 1.3rem;
     padding: 4px 8px;
     width: 350px;
+    letter-spacing: 1px;
   }
   .profile-btn {
     width: 100%;
@@ -45,14 +49,14 @@ const Wrapper = styles.div`
     padding: 0.375rem 0.75rem;
     box-shadow: var(--shadow-2);
     display: inline-block;
-    margin-top: 40px;
+    margin-top: 60px;
   }
 
   @media (min-width: 1225px) {
     .form-main {
         display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 0 1rem;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0 1rem;
     }
     .form-input {
         display: block;

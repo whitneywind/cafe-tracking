@@ -95,9 +95,17 @@ const AppProvider = ({ children }) => {
     }
 
     const updateUser = async (currentUser) => {
-        console.log(currentUser)
         try {
-            await axios.patch('/api/v1/auth/update', currentUser);
+            const res = await axios.patch(
+                '/api/v1/auth/update',
+                currentUser,
+                { 
+                    headers: {
+                        'Authorization': `Bearer ${state.token}`
+                    } 
+                }
+            );
+            console.log(res)
             dispatch({ type: 'UPDATE_USER_SUCCESS'})
         } catch (error) {
             dispatch({

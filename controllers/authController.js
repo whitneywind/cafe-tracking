@@ -44,7 +44,6 @@ export const login = async (req, res, next) => {
         }
 
         const isMatchingPassword = await user.comparePassword(password)
-        console.log('password matches: ', isMatchingPassword)
 
         if (!isMatchingPassword) {
             next({...customError, msg: 'incorrect password'})
@@ -62,20 +61,12 @@ export const update = async (req, res) => {
     if (!email || !username) {
         throw new Error('please provide all info');
     }
-    // const user = await User.findOne({ email })
-
-    // user.email = email;
-    // user.username = username;
-    // user.location = location;
 
     const filter = { email };
     const update = { email, username, location };
     const options = { new: true };
 
     const user = await User.findOneAndUpdate(filter, update, options);
-
-    console.log(user)
-
-    res.send('update user')
+    res.send(user)
 }
 
