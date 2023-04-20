@@ -13,7 +13,7 @@ const Landing = () => {
             <div className="container page">
                 <div className="info">
                     <h2>organization for <span>coffeeshop enthusiasts</span></h2>
-                    <p>cinnamon strong siphon instant dark espresso whipped mocha pumpkin spice con panna half and half doppio seasonal. trifecta, mug, caffeine barista est fair trade iced. dsoppio latte, ut that, extraction, single origin robust, grounds, shop, steamed frappuccino body, id kopi-luwak, qui froth caramelization arabica fair trade.</p>
+                    <p>This site is still under construction! Please be patient while parts of Coffeeshop Tracker are still being built.<br /><br />Coffeeshop tracking app is designed to help cafe hoppers better keep track of their coffeeshop experiences. Users can create secure, individual profiles to log their thoughts and impressions, as well as make plans for spots they plan to visit. Coffeeshop Tracker is a responsive site made using JavaScript, React, Node.js, Express, MongoDB Atlas, Mongoose, and Styled Components.</p>
                     <Link to="/register" alt="to register" className="btn btn-hero">login/register</Link>
                 </div>
                 <img src={barista} alt="coffeeshop" className="img main-img" />
