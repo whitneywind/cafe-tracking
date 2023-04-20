@@ -8,8 +8,8 @@ Coffeeshop tracking app is designed to help cafe hoppers better keep track of th
 
 This web app uses JavaScript, React, Node.js, Express, MongoDB Atlas, Mongoose, and Styled Components.
 
-![Site Overview](public/imgs/landing.jpg)
+![Site Overview](client/public/imgs/landing.jpg)
 
-![Site Overview3](public/imgs/profile.jpg)
+![Site Overview3](client/public/imgs/profile.jpg)
 
-![Site Overview2](public/imgs/login.jpg)
+![Site Overview2](client/public/imgs/login.jpg)
