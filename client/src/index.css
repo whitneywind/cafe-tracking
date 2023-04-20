@@ -18,6 +18,7 @@
   --mainBlack: #13070C;
   --iconBrown: #412e35;
   --mainColor5Light: #d3938d;
+  --mainBackgroundColor: #e9d3ce;
 
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -34,7 +35,7 @@ html {
 }
 body {
   font-family: var(--mainFont);
-  background-color: #e9d3ce;
+  background-color: var(--mainColor1);
   color: var(--mainBlack);
   line-height: 1.70;
 }

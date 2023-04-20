@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.main`
+  background-color: var(--mainBackgroundColor);
   .dashboard {
     display: grid;
     grid-template-columns: 1fr;
