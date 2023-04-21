@@ -38,7 +38,7 @@ const Wrapper = styled.main`
 
     p {
         text-align: justify;
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
     }
 
     .main-img {
@@ -52,12 +52,12 @@ const Wrapper = styled.main`
         background-color: var(--mainColor2);
         box-shadow: var(--shadow-1);
         border: transparent;
-        letter-spacing: 1px;
+        letter-spacing: 1.5px;
         padding: 1rem;
         text-decoration: none;
         display: block;
-            margin: 0 auto;
-            width: fit-content;
+        margin: 0 auto;
+        width: fit-content;
     }
 
     @media (min-width: 750px) {

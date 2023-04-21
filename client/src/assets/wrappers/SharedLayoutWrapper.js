@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.main`
   background-color: var(--mainBackgroundColor);
+  height: 100vh;
   .dashboard {
     display: grid;
     grid-template-columns: 1fr;
@@ -19,6 +20,6 @@ const Wrapper = styled.main`
       width: 90%;
     }
   }
-`
+`;
 
 export default Wrapper;

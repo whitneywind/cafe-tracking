@@ -26,7 +26,7 @@ const Wrapper = styled.section`
         .sidebar-container {
             min-height: 100vh;
             height: 100%;
-            width: 190px;
+            width: 170px;
             background: var(--mainColor1Alt);
             box-shadow: 1px 0px 0px 0px rgba(245, 245, 245, 0.56);
         }

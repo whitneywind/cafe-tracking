@@ -12,7 +12,7 @@ const Alert = () => {
 const Wrapper = styled.div`
     .alert {
         width: 100%;
-        background-color: #76e176;
+        background-color: #e0e0e0;
         letter-spacing: 1px;
         border-radius: 0.15rem;
         margin-bottom: 1rem;
@@ -23,10 +23,10 @@ const Wrapper = styled.div`
         font-weight: 600;
     }
     .alert-danger {
-        background-color: #eb7d7d;
+        background-color: #b74439;
     }
     .alert-success {
-        background-color: #e0e0e0;
+        background-color: #a4caaa;
     }
 `
 

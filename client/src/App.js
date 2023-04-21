@@ -13,15 +13,18 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />}></Route>
-        <Route path="dashboard" element={
-          <ProtectedRoute>
-            <SharedLayout />
-          </ProtectedRoute>
-        }>
-          <Route path="all-cafes" element={<AllCafes />} />
+        <Route
+          path="dashboard"
+          element={
+            <ProtectedRoute>
+              <SharedLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<AllCafes />} />
           <Route path="add-cafe" element={<AddCafe />} />
           <Route path="profile" element={<Profile />} />
-        </Route> 
+        </Route>
         <Route path="register" element={<Register />}></Route>
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>

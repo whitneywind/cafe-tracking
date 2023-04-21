@@ -1,4 +1,3 @@
-import Logo from "./Logo"
 import styled from "styled-components"
 import { useAppContext } from "../context/appContext"
 import MenuLinks from "./MenuLinks"
@@ -49,8 +48,8 @@ const Wrapper = styled.aside`
   }
   .content {
     background: #fdf7f6;
-    width: 90vw;
-    height: 95vh;
+    width: 75vw;
+    height: 80vh;
     border-radius: 0.25rem;
     padding: 4rem 2rem;
     position: relative;
