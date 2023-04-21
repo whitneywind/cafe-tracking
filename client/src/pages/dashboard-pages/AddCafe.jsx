@@ -2,13 +2,31 @@ import styled from "styled-components";
 import { useState } from "react";
 import Alert from "../../components/Alert";
 import { useAppContext } from "../../context/appContext";
+import Rating from "@mui/material/Rating";
+// import Box from "@mui/material/Box";
+import StarIcon from "@mui/icons-material/Star";
 
 const AddCafe = () => {
+  // TO-DO: refactor into a single object
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [neighborhood, setNeighborhood] = useState("");
   const [details, setDetails] = useState("");
   const [visited, setVisited] = useState(false);
+  const [value, setValue] = useState(3);
+  const [hover, setHover] = useState(-1);
+
+  const labels = {
+    1: "Worthless",
+    2: "Poor",
+    3: "Ok",
+    4: "Good",
+    5: "Excellent",
+  };
+
+  const getLabelText = (value) => {
+    return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
+  };
 
   const { showAlert } = useAppContext();
 
@@ -51,7 +69,7 @@ const AddCafe = () => {
               </div>
             </div>
 
-            <div className="form-row visited-row">
+            {/* <div className="form-row visited-row">
               <p>Have you visited this cafe?</p>
               <div className="middle-row">
                 <label htmlFor="visited-yes">Yes</label>
@@ -73,14 +91,82 @@ const AddCafe = () => {
                   onChange={() => setVisited(false)}
                 />
               </div>
+            </div> */}
+
+            <div className="form-section ratings">
+              <div className="form-row">
+                <h2>Rate your impression of the cafe</h2>
+                <div className="rating-box">
+                  <p>Coffee Quality</p>
+                  <Rating
+                    name="hover-feedback"
+                    value={value}
+                    precision={1}
+                    getLabelText={getLabelText}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    size="small"
+                    onChangeActive={(event, newHover) => {
+                      setHover(newHover);
+                    }}
+                    emptyIcon={<StarIcon fontSize="inherit" />}
+                  />
+                  {value !== null && (
+                    <p className="rating-desc">
+                      {labels[hover !== -1 ? hover : value]}
+                    </p>
+                  )}
+                </div>
+                <div className="rating-box">
+                  <p>Atmosphere</p>
+                  <Rating
+                    name="hover-feedback"
+                    value={value}
+                    precision={1}
+                    getLabelText={getLabelText}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    size="small"
+                    onChangeActive={(event, newHover) => {
+                      setHover(newHover);
+                    }}
+                    emptyIcon={<StarIcon fontSize="inherit" />}
+                  />
+                  {value !== null && (
+                    <p className="rating-desc">
+                      {labels[hover !== -1 ? hover : value]}
+                    </p>
+                  )}
+                </div>
+                <div className="rating-box">
+                  <p>Food/Pastries</p>
+                  <Rating
+                    name="hover-feedback"
+                    value={value}
+                    precision={1}
+                    getLabelText={getLabelText}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    size="small"
+                    onChangeActive={(event, newHover) => {
+                      setHover(newHover);
+                    }}
+                    emptyIcon={<StarIcon fontSize="inherit" />}
+                  />
+                  {value !== null && (
+                    <p className="rating-desc">
+                      {labels[hover !== -1 ? hover : value]}
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
 
-            <div className="extra-info form-section">
-              <div className="form-row">
-                <p htmlFor="neighborhood">How would you rate...</p>
-              </div>
-
-              <div className="form-row">
+            <div className="form-section">
+              {/* <div className="form-row">
                 <label htmlFor="neighborhood">Neighborhood</label>
                 <input
                   type="text"
@@ -89,7 +175,7 @@ const AddCafe = () => {
                   value={neighborhood}
                   onChange={(e) => setNeighborhood(e.target.value)}
                 />
-              </div>
+              </div> */}
 
               <div className="form-row">
                 <label htmlFor="neighborhood">Misc Details</label>
@@ -115,8 +201,17 @@ const AddCafe = () => {
 export default AddCafe;
 
 const Wrapper = styled.div`
+  .rating-box {
+    width: auto;
+    display: flex;
+    align-items: center;
+  }
   h1 {
     font-size: 1.2rem;
+    font-weight: 500;
+  }
+  h2 {
+    font-size: 1.1rem;
     font-weight: 500;
   }
   p {
