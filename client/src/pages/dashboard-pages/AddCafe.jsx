@@ -1,20 +1,25 @@
-import styled from "styled-components";
+import Wrapper from "../../assets/wrappers/AddCafeWrapper";
 import { useState } from "react";
 import Alert from "../../components/Alert";
 import { useAppContext } from "../../context/appContext";
 import Rating from "@mui/material/Rating";
-// import Box from "@mui/material/Box";
 import StarIcon from "@mui/icons-material/Star";
 
 const AddCafe = () => {
-  // TO-DO: refactor into a single object
-  const [name, setName] = useState("");
-  const [city, setCity] = useState("");
-  const [neighborhood, setNeighborhood] = useState("");
-  const [details, setDetails] = useState("");
-  const [visited, setVisited] = useState(false);
-  const [value, setValue] = useState(3);
-  const [hover, setHover] = useState(-1);
+  const defaultCafeState = {
+    cafeName: "",
+    city: "",
+    details: "",
+    coffeeValue: 3,
+    vibeValue: 3,
+    foodValue: 3,
+  };
+
+  const [cafeState, setCafeState] = useState(defaultCafeState);
+
+  const [hoverCoffee, setHoverCoffee] = useState(-1);
+  const [hoverVibe, setHoverVibe] = useState(-1);
+  const [hoverFood, setHoverFood] = useState(-1);
 
   const labels = {
     1: "Worthless",
@@ -28,11 +33,19 @@ const AddCafe = () => {
     return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
   };
 
-  const { showAlert } = useAppContext();
+  const { showAlert, user, addCafe } = useAppContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    addCafe(cafeState);
+
+    setTimeout(() => {
+      setCafeState(defaultCafeState);
+    }, 3000);
   };
+
+  // TO-DO: make the Ratings components reusable FormRow components (map into these components using separate data file)
 
   return (
     <Wrapper>
@@ -46,13 +59,18 @@ const AddCafe = () => {
           <div className="main-form">
             <div className="basic-info form-section">
               <div className="form-row">
-                <label htmlFor="name">Cafe Name</label>
+                <label htmlFor="cafeName">Cafe Name</label>
                 <input
                   type="text"
-                  name="name"
+                  name="cafeName"
                   className="form-input"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={cafeState.cafeName}
+                  onChange={(e) => {
+                    setCafeState({
+                      ...cafeState,
+                      [e.target.name]: e.target.value,
+                    });
+                  }}
                   required
                 />
               </div>
@@ -62,8 +80,13 @@ const AddCafe = () => {
                   type="text"
                   name="city"
                   className="form-input"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
+                  value={cafeState.city}
+                  onChange={(e) => {
+                    setCafeState({
+                      ...cafeState,
+                      [e.target.name]: e.target.value,
+                    });
+                  }}
                   required
                 />
               </div>
@@ -96,69 +119,98 @@ const AddCafe = () => {
             <div className="form-section ratings">
               <div className="form-row">
                 <h2>Rate your impression of the cafe</h2>
+
                 <div className="rating-box">
                   <p>Coffee Quality</p>
                   <Rating
                     name="hover-feedback"
-                    value={value}
+                    value={cafeState.coffeeValue}
                     precision={1}
                     getLabelText={getLabelText}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
+                    // onChange={(event, newValue) => {
+                    //   setCoffeeValue(newValue);
+                    // }}
+                    onChange={(e, newValue) => {
+                      setCafeState({
+                        ...cafeState,
+                        coffeeValue: newValue,
+                      });
                     }}
                     size="small"
                     onChangeActive={(event, newHover) => {
-                      setHover(newHover);
+                      setHoverCoffee(newHover);
                     }}
                     emptyIcon={<StarIcon fontSize="inherit" />}
                   />
-                  {value !== null && (
+                  {cafeState.coffeeValue !== null && (
                     <p className="rating-desc">
-                      {labels[hover !== -1 ? hover : value]}
+                      {
+                        labels[
+                          hoverCoffee !== -1
+                            ? hoverCoffee
+                            : cafeState.coffeeValue
+                        ]
+                      }
                     </p>
                   )}
                 </div>
+
                 <div className="rating-box">
                   <p>Atmosphere</p>
                   <Rating
                     name="hover-feedback"
-                    value={value}
+                    value={cafeState.vibeValue}
                     precision={1}
                     getLabelText={getLabelText}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
+                    onChange={(e, newValue) => {
+                      setCafeState({
+                        ...cafeState,
+                        vibeValue: newValue,
+                      });
                     }}
                     size="small"
                     onChangeActive={(event, newHover) => {
-                      setHover(newHover);
+                      setHoverVibe(newHover);
                     }}
                     emptyIcon={<StarIcon fontSize="inherit" />}
                   />
-                  {value !== null && (
+                  {cafeState.vibeValue !== null && (
                     <p className="rating-desc">
-                      {labels[hover !== -1 ? hover : value]}
+                      {
+                        labels[
+                          hoverVibe !== -1 ? hoverVibe : cafeState.vibeValue
+                        ]
+                      }
                     </p>
                   )}
                 </div>
+
                 <div className="rating-box">
                   <p>Food/Pastries</p>
                   <Rating
                     name="hover-feedback"
-                    value={value}
+                    value={cafeState.foodValue}
                     precision={1}
                     getLabelText={getLabelText}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
+                    onChange={(e, newValue) => {
+                      setCafeState({
+                        ...cafeState,
+                        foodValue: newValue,
+                      });
                     }}
                     size="small"
                     onChangeActive={(event, newHover) => {
-                      setHover(newHover);
+                      setHoverFood(newHover);
                     }}
                     emptyIcon={<StarIcon fontSize="inherit" />}
                   />
-                  {value !== null && (
+                  {cafeState.foodValue !== null && (
                     <p className="rating-desc">
-                      {labels[hover !== -1 ? hover : value]}
+                      {
+                        labels[
+                          hoverFood !== -1 ? hoverFood : cafeState.foodValue
+                        ]
+                      }
                     </p>
                   )}
                 </div>
@@ -178,20 +230,27 @@ const AddCafe = () => {
               </div> */}
 
               <div className="form-row">
-                <label htmlFor="neighborhood">Misc Details</label>
+                <label htmlFor="details">Misc Details</label>
                 <textarea
                   name="details"
                   className="form-input"
-                  value={details}
-                  onChange={(e) => setDetails(e.target.value)}
+                  value={cafeState.details}
+                  onChange={(e) => {
+                    setCafeState({
+                      ...cafeState,
+                      [e.target.name]: e.target.value,
+                    });
+                  }}
                   placeholder="Write any other details you'd like to include"
                 />
               </div>
             </div>
           </div>
-          <button type="submit" className="add-btn">
-            Add Cafe Details
-          </button>
+          <div className="btn-container">
+            <button type="submit" className="add-btn">
+              Add Cafe Details
+            </button>
+          </div>
         </form>
       </div>
       {showAlert && <Alert />}
@@ -199,106 +258,3 @@ const AddCafe = () => {
   );
 };
 export default AddCafe;
-
-const Wrapper = styled.div`
-  .rating-box {
-    width: auto;
-    display: flex;
-    align-items: center;
-  }
-  h1 {
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-  h2 {
-    font-size: 1.1rem;
-    font-weight: 500;
-  }
-  p {
-    font-size: 1rem;
-    line-height: 1;
-    letter-spacing: normal;
-  }
-  .form-container {
-    max-width: 90%;
-    margin: 0 auto;
-    background: var(--mainColor1Alt);
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    padding: 1rem 2rem 2rem;
-    font-size: 1.2rem;
-    border-radius: 0.5rem;
-    letter-spacing: 1px;
-  }
-  .main-form {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .middle-row {
-    display: flex;
-    justify-content: space-around;
-  }
-  .middle-row label {
-  }
-  .form-section {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .visited-row {
-    width: 350px;
-  }
-  .form-row {
-    margin: 0 auto;
-  }
-  .form-row label {
-    font-size: 1rem;
-  }
-  .form-input {
-    display: block;
-    font-size: 1.1rem;
-    padding: 8px 8px;
-    width: 350px;
-    letter-spacing: 1px;
-    border-radius: 10px;
-    border: none;
-  }
-  .add-btn {
-    width: 100%;
-    cursor: pointer;
-    color: var(--mainBlack);
-    background: var(--mainColor5Light);
-    border: transparent;
-    border-radius: 0.25rem;
-    letter-spacing: 1px;
-    padding: 0.375rem 0.75rem;
-    box-shadow: var(--shadow-2);
-    display: inline-block;
-    margin-top: 60px;
-  }
-  @media (min-width: 992px) {
-    .form-container {
-      max-width: 90%;
-      margin: 0 auto;
-      background: var(--mainColor1Alt);
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-        0 1px 2px 0 rgba(0, 0, 0, 0.06);
-      padding: 1rem 2rem 2rem;
-      font-size: 1.2rem;
-      border-radius: 0.5rem;
-      letter-spacing: 1px;
-    }
-    .main-form {
-      display: flex;
-      gap: 1rem;
-    }
-    .form-section {
-      display: flex;
-      flex-direction: row;
-    }
-    .visited-row {
-    }
-  }
-`;
