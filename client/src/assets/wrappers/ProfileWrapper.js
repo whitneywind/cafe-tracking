@@ -34,11 +34,13 @@ const Wrapper = styles.div`
   .form-input {
     display: block;
     font-size: 1.1rem;
-    padding: 8px 8px;
+    padding: 8px 8px 4px;
     width: 350px;
     letter-spacing: 1px;
     border-radius: 0.5rem;
     border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--mainBlack);
   }
   .profile-btn {
     width: 100%;
@@ -51,7 +53,7 @@ const Wrapper = styles.div`
     padding: 0.375rem 0.75rem;
     box-shadow: var(--shadow-2);
     display: inline-block;
-    margin-top: 60px;
+    margin-top: 50px;
   }
 
   @media (min-width: 1225px) {

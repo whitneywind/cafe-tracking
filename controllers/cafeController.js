@@ -7,6 +7,17 @@ export const createCafe = async (req, res, next) => {
   res.status(201).json({ cafe });
 };
 
+export const deleteAll = async (req, res, next) => {
+  await Cafe.deleteMany({}, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("All documents deleted");
+      res.send("deleted all");
+    }
+  });
+};
+
 export const getAllCafes = async (req, res, next) => {
   res.send("got all cafes");
 };

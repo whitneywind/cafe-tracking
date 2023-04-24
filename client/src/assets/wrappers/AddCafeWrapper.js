@@ -5,6 +5,10 @@ const Wrapper = styled.div`
     width: auto;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+  }
+  .ratings-container {
+    width: 90%;
   }
   h1 {
     font-size: 1.2rem;
@@ -33,19 +37,17 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 8px;
   }
   .middle-row {
     display: flex;
     justify-content: space-around;
   }
-  .middle-row label {
-  }
   .form-section {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0;
   }
   .visited-row {
     width: 350px;
@@ -58,12 +60,14 @@ const Wrapper = styled.div`
   }
   .form-input {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 8px 8px;
     width: 350px;
     letter-spacing: 1px;
     border-radius: 10px;
     border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--mainBlack);
   }
   .btn-container {
     width: 100%;
@@ -81,6 +85,14 @@ const Wrapper = styled.div`
     box-shadow: var(--shadow-2);
     display: inline-block;
     margin-top: 30px;
+  }
+  .alert {
+    width: 350px;
+    z-index: 10;
+    position: absolute;
+    margin-top: 1rem;
+    margin-left: 15rem;
+    font-size: 1.5rem;
   }
   /* @media (min-width: 992px) {
     .form-container {

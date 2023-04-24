@@ -1,63 +1,63 @@
-import styled from "styled-components"
-import { useAppContext } from "../context/appContext"
-import Logo from "./Logo"
-import { BsReverseLayoutTextSidebarReverse } from "react-icons/bs"
-import {IoIosArrowDropdown} from "react-icons/io"
-import { RiUserHeartLine } from "react-icons/ri"
-import { useState } from "react"
+import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
+import Logo from "./Logo";
+import { BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
+import { IoIosArrowDropdown } from "react-icons/io";
+import { RiUserHeartLine } from "react-icons/ri";
+import { useState } from "react";
 
 const Navbar = () => {
-    const { toggleSmallSidebar, user, logoutUser } = useAppContext();
-    const [showDropdown, setShowDropdown] = useState(false);
+  const { toggleSmallSidebar, user, logoutUser } = useAppContext();
+  const [showDropdown, setShowDropdown] = useState(false);
 
   return (
     <Wrapper>
-       <div className="nav-center">
-            <button 
-                type="button"
-                className="toggle-btn"
-                onClick={toggleSmallSidebar}
-            >
-                <BsReverseLayoutTextSidebarReverse />
-            </button>
-            <div className="logo-container">
-                <Logo className="logo" />
-                <p className="logo-text">Dashboard</p>
-            </div>
-        <div className="btn-container">
-            <button 
-                type="button"
-                className="btn"
-                onClick={() => setShowDropdown(!showDropdown)}
-            >
-                <RiUserHeartLine />
-                {user?.username}
-                <IoIosArrowDropdown />
-            </button>
-            <div className={showDropdown ? "dropdown show-dropdown" : "dropdown"}>
-                <button 
-                    type="button"
-                    className="dropdown-btn"
-                    onClick={() => logoutUser()}
-                >
-                    Logout
-                </button>
-            </div>
+      <div className="nav-center">
+        <button
+          type="button"
+          className="toggle-btn"
+          onClick={toggleSmallSidebar}
+        >
+          <BsReverseLayoutTextSidebarReverse />
+        </button>
+        <div className="logo-container">
+          <Logo className="logo" />
+          <p className="logo-text">Dashboard</p>
         </div>
-    </div>
+        <div className="btn-container">
+          <button
+            type="button"
+            className="btn"
+            onClick={() => setShowDropdown(!showDropdown)}
+          >
+            <RiUserHeartLine />
+            {user?.username}
+            <IoIosArrowDropdown />
+          </button>
+          <div className={showDropdown ? "dropdown show-dropdown" : "dropdown"}>
+            <button
+              type="button"
+              className="dropdown-btn"
+              onClick={() => logoutUser()}
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
     </Wrapper>
-  )
-}
-export default Navbar
+  );
+};
+export default Navbar;
 
 const Wrapper = styled.nav`
   height: 6rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 1px 0px 0px 0px rgba(245, 245, 245, 0.56);
+  box-shadow: 2px 0px 1px 0px rgba(188, 188, 188, 0.957);
   background: var(--mainColor1Alt);
-  
+
   .logo {
     display: flex;
     align-items: center;
@@ -95,7 +95,8 @@ const Wrapper = styled.nav`
     text-decoration: none;
     border-radius: 0.25rem;
     border: 2px solid var(--mainColor4);
-    box-shadow: 1px 1px 0 var(--mainColor4), 2px 2px 0 var(--mainColor4), 3px 3px 0 var(--mainColor4);
+    box-shadow: 1px 1px 0 var(--mainColor4), 2px 2px 0 var(--mainColor4),
+      3px 3px 0 var(--mainColor4);
   }
   .btn:active {
     box-shadow: 0 0 0 0;
@@ -107,7 +108,7 @@ const Wrapper = styled.nav`
     width: 100%;
     background: var(--mainColor4);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
     padding: 0.5rem;
     text-align: center;
     visibility: hidden;
@@ -133,7 +134,7 @@ const Wrapper = styled.nav`
     margin: 0;
     font-size: 1.5rem;
     font-weight: 500;
-    color: var(--mainBlack)
+    color: var(--mainBlack);
   }
   .logo {
     width: 2.1rem;
@@ -143,7 +144,7 @@ const Wrapper = styled.nav`
     top: 0;
 
     .toggle-btn {
-        display: none;
+      display: none;
     }
     .nav-center {
       width: 90%;
@@ -154,5 +155,5 @@ const Wrapper = styled.nav`
     .logo-text {
       display: block;
     }
-}
-`
+  }
+`;

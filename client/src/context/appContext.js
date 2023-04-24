@@ -138,8 +138,7 @@ const AppProvider = ({ children }) => {
 
   const addCafe = async (cafeInfo) => {
     try {
-      const response = await authReq.post("/cafes", cafeInfo);
-      console.log(response.data);
+      await authReq.post("/cafes", cafeInfo);
       dispatch({ type: "ADD_CAFE" });
     } catch (err) {
       console.log(err);
