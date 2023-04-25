@@ -1,19 +1,26 @@
 import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
+import { useState } from "react";
 
-const Search = ({ searchValue, setSearch }) => {
+const Search = () => {
+  let { searchString, updateSearchString } = useAppContext();
+
+  const handleSearch = (e) => {
+    updateSearchString({ name: e.target.name, value: e.target.value });
+  };
   return (
     <Wrapper>
-      <h1>Search your Cafes</h1>
+      <h1>Find your Cafes</h1>
       <hr />
       <div className="search-container">
         <div className="form-row">
-          <label htmlFor="searchText">Search</label>
+          <label htmlFor="searchString">Search</label>
           <input
             type="text"
-            name="searchText"
+            name="searchString"
             className="form-input"
-            // value={searchValue}
-            // onChange={(e) => setSearch(e.target.value)}
+            value={searchString}
+            onChange={handleSearch}
             required
           />
         </div>
@@ -36,19 +43,19 @@ const Wrapper = styled.main`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 1rem;
   }
   .form-row {
     margin: 0 auto;
+    width: 100%;
   }
   .form-row label {
     font-size: 1rem;
   }
   .form-input {
     display: block;
+    width: 100%;
     font-size: 1.1rem;
     padding: 8px 8px 4px;
-    width: 350px;
     letter-spacing: 1px;
     border-radius: 0.5rem;
     border: none;

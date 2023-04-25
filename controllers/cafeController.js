@@ -19,16 +19,45 @@ export const deleteAll = async (req, res, next) => {
 };
 
 export const getAllCafes = async (req, res, next) => {
-  const cafes = await Cafe.find({ createdBy: req.user.userId });
-  res.status(200).json({ cafes, totalCafes: cafes.length });
+  try {
+    const { search } = req.query;
+    const filter = { createdBy: req.user.userId };
+
+    if (search) {
+      filter.cafeName = { $regex: search, $options: "i" };
+    }
+
+    const cafes = await Cafe.find(filter);
+
+    res.status(200).json({ cafes, totalCafes: cafes.length });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "an error occurred when retrieving cafes" });
+  }
 };
 
 export const updateCafe = async (req, res, next) => {
   res.send("supposedly");
 };
 
-export const deleteCafe = async (req, res, next) => {
-  res.send("cafe supposedly deleted");
+export const deleteCafe = async (req, res) => {
+  const { id: cafeId } = req.params;
+
+  const cafe = await Cafe.findOneAndDelete({ _id: cafeId });
+
+  if (!cafe) res.status(404).json({ msg: "no item found with this ID" });
+
+  //   await cafe.remove();
+  res.status(200).json({ msg: "successfully deleted" });
+
+  //   await Cafe.findOneAndDelete({ _id: cafeId }, (err) => {
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       console.log("All documents deleted");
+  //       res.send("deleted all");
+  //     }
+  //   });
 };
 
 export const showStats = async (req, res, next) => {

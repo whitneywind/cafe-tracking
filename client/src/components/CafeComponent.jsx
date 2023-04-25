@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { GrLocation } from "react-icons/gr";
 import { CiStar } from "react-icons/ci";
+import { MdOutlineCancel } from "react-icons/md";
+import { useAppContext } from "../context/appContext";
 
 const CafeComponent = ({
   cafeName,
@@ -9,18 +11,28 @@ const CafeComponent = ({
   coffeeValue,
   vibeValue,
   foodValue,
+  _id,
 }) => {
+  const { deleteCafe } = useAppContext();
+
+  const handleDelete = () => {
+    deleteCafe(_id);
+  };
+
   return (
     <Wrapper>
       <header>
         <div className="letter-box">
           <p>{cafeName.slice(0, 1)}</p>
         </div>
-        <p className="name">{cafeName}</p>
-        <div className="location">
-          <GrLocation />
-          <div>{city}</div>
+        <div className="name-and-location">
+          <p className="name">{cafeName}</p>
+          <div className="location">
+            <GrLocation />
+            <div>{city}</div>
+          </div>
         </div>
+        <MdOutlineCancel className="cancel" onClick={handleDelete} />
       </header>
       <hr />
       <div className="ratings">
@@ -59,12 +71,8 @@ const Wrapper = styled.main`
     letter-spacing: 0;
   }
   header {
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center; */
-
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 5fr 1fr;
     align-items: center;
     width: 90%;
     margin: 10px auto;
@@ -83,6 +91,10 @@ const Wrapper = styled.main`
     color: white;
     font-size: 1.4rem;
   }
+  .name-and-location {
+    display: flex;
+    flex-direction: column;
+  }
   .name {
     font-size: 1.7rem;
     text-align: start;
@@ -92,10 +104,27 @@ const Wrapper = styled.main`
   .location {
     display: inline-flex;
     align-items: center;
+    font-size: 1.1rem;
+  }
+  .location > div {
+    padding-left: 3px;
   }
   hr {
     width: 90%;
     margin: 0 auto;
+  }
+  .cancel {
+    margin-left: 22px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--mainColor4);
+    transition: all 1s ease;
+  }
+  .cancel:hover {
+    cursor: pointer;
+    color: #ae4949;
+    transform: rotate(90deg);
   }
   .ratings {
     display: flex;
@@ -110,5 +139,6 @@ const Wrapper = styled.main`
   .rate-title {
     font-size: 1.1rem;
     font-weight: 500;
+    margin-bottom: 0;
   }
 `;

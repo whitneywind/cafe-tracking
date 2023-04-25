@@ -16,6 +16,7 @@ const initialState = {
   showSidebar: false,
   cafes: [],
   totalCafes: 0,
+  searchString: "",
 };
 
 const AppContext = createContext();
@@ -148,8 +149,9 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
-  const getAllCafes = async () => {
-    let url = `/cafes`;
+  const getAllCafes = async (searchInput) => {
+    let url = !searchInput ? "/cafes" : `/cafes?search=${searchInput}`;
+
     dispatch({ type: "GET_CAFES_BEGIN" });
     try {
       const { data } = await authReq.get(url);
@@ -168,10 +170,25 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  //  for testing:
-  //   useEffect(() => {
-  //     getAllCafes();
-  //   }, []);
+  const deleteCafe = async (_id) => {
+    console.log(_id);
+    try {
+      await authReq.delete(`/cafes/${_id}`);
+      getAllCafes();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateSearchString = ({ name, value }) => {
+    dispatch({
+      type: "UPDATE_SEARCH",
+      payload: {
+        name,
+        value,
+      },
+    });
+  };
 
   return (
     <AppContext.Provider
@@ -188,6 +205,8 @@ const AppProvider = ({ children }) => {
         toggleSmallSidebar,
         addCafe,
         getAllCafes,
+        deleteCafe,
+        updateSearchString,
       }}
     >
       {children}

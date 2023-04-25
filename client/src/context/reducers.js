@@ -103,6 +103,15 @@ const reducer = (state, action) => {
         cafes: action.payload.cafes,
         totalCafes: action.payload.totalCafes,
       };
+    case "DELETE_CAFE":
+      return {
+        ...state,
+      };
+    case "UPDATE_SEARCH":
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value,
+      };
     default:
       throw new Error(`no such action: ${action.type}`);
   }

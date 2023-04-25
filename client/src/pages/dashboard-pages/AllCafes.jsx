@@ -5,7 +5,7 @@ import CafesComponent from "../../components/Cafes";
 const AllCafes = () => {
   return (
     <Wrapper>
-      <SearchComponent searchValue="" />
+      <SearchComponent />
       <CafesComponent />
     </Wrapper>
   );

@@ -4,18 +4,31 @@ import { useEffect } from "react";
 import Cafe from "./CafeComponent";
 
 const Cafes = () => {
-  const { cafes, totalCafes, getAllCafes } = useAppContext();
+  const { cafes, totalCafes, getAllCafes, searchString } = useAppContext();
   console.log(cafes);
+
   useEffect(() => {
-    getAllCafes();
-  }, []);
+    if (searchString === "") {
+      getAllCafes();
+    } else {
+      setTimeout(() => {
+        getAllCafes(searchString);
+      }, 2000);
+    }
+  }, [searchString]);
+
+  // TO-DO: add a Loading option for this and other pages in global state
+
   return (
     <Wrapper>
       <p>Total: {totalCafes} Cafes Found</p>
+      {!totalCafes && (
+        <div className="empty">No cafes entered. Try adding some first!</div>
+      )}
       <div className="cafes-container">
         {cafes &&
           cafes.map((cafe) => {
-            return <Cafe key={cafe.id} {...cafe} />;
+            return <Cafe key={cafe._id} {...cafe} />;
           })}
       </div>
     </Wrapper>
@@ -29,6 +42,14 @@ const Wrapper = styled.main`
   font-size: 1.2rem;
   border-radius: 0.5rem;
 
+  .empty {
+    font-size: 1.5rem;
+    font-weight: 500;
+    width: 100%;
+    margin-top: 6rem;
+    padding-bottom: 6rem;
+    text-align: center;
+  }
   .cafes-container {
     margin: 0 auto;
     font-size: 1.2rem;
