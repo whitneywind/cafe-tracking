@@ -53,7 +53,7 @@ const AddCafe = () => {
       <div className="form-container">
         <header>
           <h1>Add Cafe</h1>
-          <p>Fill out details about the cafe you visited or plan to visit.</p>
+          {/* <p>Fill out details about the cafe you visited or plan to visit.</p> */}
           <hr />
         </header>
         <form onSubmit={handleSubmit}>

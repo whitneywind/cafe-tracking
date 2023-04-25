@@ -92,6 +92,17 @@ const reducer = (state, action) => {
         alertType: "success",
         alertText: "Cafe successfully submitted!",
       };
+    case "GET_CAFES_BEGIN":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "GET_CAFES_SUCCESS":
+      return {
+        ...state,
+        cafes: action.payload.cafes,
+        totalCafes: action.payload.totalCafes,
+      };
     default:
       throw new Error(`no such action: ${action.type}`);
   }

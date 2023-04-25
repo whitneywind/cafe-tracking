@@ -14,6 +14,8 @@ const initialState = {
   token: token || null,
   cafeLocation: "",
   showSidebar: false,
+  cafes: [],
+  totalCafes: 0,
 };
 
 const AppContext = createContext();
@@ -120,7 +122,7 @@ const AppProvider = ({ children }) => {
     clearLocalStorage();
   };
 
-  // will use this instead of regular axios instance when we want to be able to access the req.headers.authorizatoin for verification (and maybe for other purposes too. we'll see)
+  // will use this instead of regular axios instance when we want to be able to access the req.headers.authorization for verification (and maybe for other purposes too. we'll see)
   const authReq = axios.create({
     baseURL: "/api/v1",
   });
@@ -146,6 +148,31 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const getAllCafes = async () => {
+    let url = `/cafes`;
+    dispatch({ type: "GET_CAFES_BEGIN" });
+    try {
+      const { data } = await authReq.get(url);
+      const { cafes, totalCafes } = data;
+      console.log(cafes);
+      dispatch({
+        type: "GET_CAFES_SUCCESS",
+        payload: {
+          cafes,
+          totalCafes,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+      logoutUser();
+    }
+  };
+
+  //  for testing:
+  //   useEffect(() => {
+  //     getAllCafes();
+  //   }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -160,6 +187,7 @@ const AppProvider = ({ children }) => {
         logoutUser,
         toggleSmallSidebar,
         addCafe,
+        getAllCafes,
       }}
     >
       {children}

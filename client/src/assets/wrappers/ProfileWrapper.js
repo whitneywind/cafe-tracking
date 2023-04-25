@@ -2,7 +2,7 @@ import styles from "styled-components";
 
 const Wrapper = styles.div`
   form {
-    max-width: 90%;
+    max-width: 700px;
     margin: 0 auto;
     background: var(--mainColor1Alt);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -15,9 +15,9 @@ const Wrapper = styles.div`
     width: clamp(200px, 50%, 450px);
     margin: 2rem auto;
   }
-  p {
-    font-size: 1.7rem;
-    margin-top: 0;
+  h1 {
+    font-size: 1.2rem;
+    font-weight: 500;
   }
   .form-main {
     display: flex;
@@ -58,15 +58,15 @@ const Wrapper = styles.div`
 
   @media (min-width: 1225px) {
     .form-main {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+  
     }
     .form-input {
-        display: block;
-        font-size: 1.1rem;
-        padding: 8px 8px;
-        width: 250px;
+      width: auto;
+      gap: 0;
+      margin: 0;
     }
   }
 

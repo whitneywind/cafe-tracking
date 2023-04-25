@@ -19,7 +19,8 @@ export const deleteAll = async (req, res, next) => {
 };
 
 export const getAllCafes = async (req, res, next) => {
-  res.send("got all cafes");
+  const cafes = await Cafe.find({ createdBy: req.user.userId });
+  res.status(200).json({ cafes, totalCafes: cafes.length });
 };
 
 export const updateCafe = async (req, res, next) => {
