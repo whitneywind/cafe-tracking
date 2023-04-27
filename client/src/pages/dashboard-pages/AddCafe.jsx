@@ -4,6 +4,7 @@ import Alert from "../../components/Alert";
 import { useAppContext } from "../../context/appContext";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
+import StyledSwitch from "../../components/styledSwitch";
 
 const AddCafe = () => {
   const defaultCafeState = {
@@ -13,25 +14,10 @@ const AddCafe = () => {
     coffeeValue: 3,
     vibeValue: 3,
     foodValue: 3,
+    visited: "not-visited",
   };
 
   const [cafeState, setCafeState] = useState(defaultCafeState);
-
-  // const [hoverCoffee, setHoverCoffee] = useState(-1);
-  // const [hoverVibe, setHoverVibe] = useState(-1);
-  // const [hoverFood, setHoverFood] = useState(-1);
-
-  // const labels = {
-  //   1: "Worthless",
-  //   2: "Poor",
-  //   3: "Ok",
-  //   4: "Good",
-  //   5: "Excellent",
-  // };
-
-  // const getLabelText = (value) => {
-  //   return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
-  // };
 
   const { showAlert, addCafe } = useAppContext();
 
@@ -42,18 +28,17 @@ const AddCafe = () => {
 
     setTimeout(() => {
       setCafeState(defaultCafeState);
-    }, 3000);
+    }, 500);
   };
 
   // TO-DO: make the Ratings components into reusable FormRow components (map into these components using separate form question data file)
 
   return (
     <Wrapper>
-      {showAlert && <Alert />}
       <div className="form-container">
         <header>
           <h1>Add Cafe</h1>
-          {/* <p>Fill out details about the cafe you visited or plan to visit.</p> */}
+          <p>Fill out details about the cafe you visited or plan to visit.</p>
           <hr />
         </header>
         <form onSubmit={handleSubmit}>
@@ -117,8 +102,10 @@ const AddCafe = () => {
               </div>
             </div> */}
 
+            <StyledSwitch />
+
             <div className="form-section">
-              <div className="form-row">
+              <div id="star-ratings" className="form-row">
                 <h2>Rate your impression of the cafe</h2>
                 <div className="ratings-container">
                   <div className="rating-box">
@@ -253,6 +240,7 @@ const AddCafe = () => {
             </button>
           </div>
         </form>
+        {showAlert && <Alert />}
       </div>
     </Wrapper>
   );

@@ -5,7 +5,6 @@ import Cafe from "./CafeComponent";
 
 const Cafes = () => {
   const { cafes, totalCafes, getAllCafes, searchString } = useAppContext();
-  console.log(cafes);
 
   useEffect(() => {
     if (searchString === "") {
@@ -17,7 +16,7 @@ const Cafes = () => {
     }
   }, [searchString]);
 
-  // TO-DO: add a Loading option for this and other pages in global state
+  // TO-DO: add a Loading option for this and other pages in global state using skeleton components
 
   return (
     <Wrapper>

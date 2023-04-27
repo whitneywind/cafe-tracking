@@ -15,6 +15,10 @@ const CafeSchema = new mongoose.Schema(
       maxLength: 18,
       trim: true,
     },
+    visited: {
+      type: String,
+      enum: ["visited", "not-visited"],
+    },
     details: {
       type: String,
       maxLength: 200,

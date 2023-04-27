@@ -24,6 +24,7 @@ const Register = () => {
     user,
     loginUser,
   } = useAppContext();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,6 +52,8 @@ const Register = () => {
     }
 
     const currentUser = { username, email, password };
+
+    console.log(currentUser);
 
     if (isMember) {
       loginUser(currentUser);
@@ -111,8 +114,8 @@ const Register = () => {
         <button type="button" onClick={toggleIsMember} className="member-btn">
           {!userValues.isMember ? "Already a member?" : "Not a member yet?"}
         </button>
+        {showAlert && <Alert />}
       </form>
-      {showAlert && <Alert />}
     </Wrapper>
   );
 };

@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  #star-ratings {
+    width: 350px;
+  }
   .rating-box {
     width: auto;
     display: flex;
@@ -8,7 +11,8 @@ const Wrapper = styled.div`
     justify-content: space-between;
   }
   .ratings-container {
-    width: 90%;
+    padding: 0 2rem;
+    margin-top: 0;
   }
   h1 {
     font-size: 1.2rem;
@@ -43,11 +47,15 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-around;
   }
+  .visited-question {
+    font-size: 1.2rem;
+  }
   .form-section {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     gap: 0;
+    width: inherit;
   }
   .visited-row {
     width: 350px;
@@ -57,6 +65,7 @@ const Wrapper = styled.div`
   }
   .form-row label {
     font-size: 1rem;
+    width: auto;
   }
   .form-input {
     display: block;
@@ -87,11 +96,6 @@ const Wrapper = styled.div`
     margin-top: 30px;
   }
   .alert {
-    width: 350px;
-    z-index: 10;
-    position: absolute;
-    margin-top: 1rem;
-    margin-left: 15rem;
     font-size: 1.5rem;
   }
   /* @media (min-width: 992px) {

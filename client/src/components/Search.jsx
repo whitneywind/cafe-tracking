@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
-import { useState } from "react";
 
 const Search = () => {
   let { searchString, updateSearchString } = useAppContext();

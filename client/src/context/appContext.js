@@ -76,9 +76,13 @@ const AppProvider = ({ children }) => {
 
   const loginUser = async (currentUser) => {
     dispatch({ type: "LOGIN_USER_BEGIN" });
+
+    // if no accounts with that email
+
     try {
       const response = await axios.post("/api/v1/auth/login", currentUser);
       const { user, token } = response.data;
+      console.log("login user begin");
       dispatch({
         type: "LOGIN_USER_SUCCESS",
         payload: {
@@ -88,6 +92,7 @@ const AppProvider = ({ children }) => {
       });
       addToLocalStorage(response.data);
     } catch (error) {
+      console.log("login user error");
       dispatch({
         type: "LOGIN_USER_ERROR",
         payload: {
@@ -171,13 +176,15 @@ const AppProvider = ({ children }) => {
   };
 
   const deleteCafe = async (_id) => {
-    console.log(_id);
+    dispatch({ type: "DELETE_CAFE" });
     try {
       await authReq.delete(`/cafes/${_id}`);
       getAllCafes();
+      dispatch({ type: "DELETE_CAFE_SUCCESS" });
     } catch (error) {
       console.log(error);
     }
+    clearAlert();
   };
 
   const updateSearchString = ({ name, value }) => {

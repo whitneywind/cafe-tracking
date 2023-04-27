@@ -1,7 +1,6 @@
 import Cafe from "../models/CafeModel.js";
 
 export const createCafe = async (req, res, next) => {
-  console.log(req.user);
   req.body.createdBy = req.user.userId;
   const cafe = await Cafe.create(req.body);
   res.status(201).json({ cafe });

@@ -47,7 +47,7 @@ const reducer = (state, action) => {
         ...state,
         showAlert: true,
         alertType: "success",
-        alertText: "Success! Loading dashboard",
+        alertText: "Welcome back! Going to dashboard...",
         isLoading: false,
         user: action.payload.user,
         token: action.payload.token,
@@ -57,7 +57,7 @@ const reducer = (state, action) => {
         ...state,
         showAlert: true,
         alertType: "danger",
-        alertText: action.payload.msg,
+        alertText: "no user found",
         isLoading: false,
       };
     case "LOGOUT_USER":
@@ -90,7 +90,7 @@ const reducer = (state, action) => {
         ...state,
         showAlert: true,
         alertType: "success",
-        alertText: "Cafe successfully submitted!",
+        alertText: "Cafe details submitted!",
       };
     case "GET_CAFES_BEGIN":
       return {
@@ -102,10 +102,18 @@ const reducer = (state, action) => {
         ...state,
         cafes: action.payload.cafes,
         totalCafes: action.payload.totalCafes,
+        isLoading: false,
       };
     case "DELETE_CAFE":
       return {
         ...state,
+        alertType: "danger",
+        alertText: "Cafe Deleted",
+      };
+    case "DELETE_CAFE_SUCCESS":
+      return {
+        ...state,
+        showAlert: true,
       };
     case "UPDATE_SEARCH":
       return {
