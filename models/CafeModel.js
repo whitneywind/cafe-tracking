@@ -16,8 +16,7 @@ const CafeSchema = new mongoose.Schema(
       trim: true,
     },
     visited: {
-      type: String,
-      enum: ["visited", "not-visited"],
+      type: Boolean,
     },
     details: {
       type: String,

@@ -14,10 +14,17 @@ const AddCafe = () => {
     coffeeValue: 3,
     vibeValue: 3,
     foodValue: 3,
-    visited: "not-visited",
+    visited: false,
   };
 
   const [cafeState, setCafeState] = useState(defaultCafeState);
+
+  const handleSwitchData = () => {
+    setCafeState({
+      ...cafeState,
+      visited: !cafeState.visited,
+    });
+  };
 
   const { showAlert, addCafe } = useAppContext();
 
@@ -76,61 +83,38 @@ const AddCafe = () => {
                   required
                 />
               </div>
+
+              <StyledSwitch onData={handleSwitchData} {...cafeState} />
             </div>
 
-            {/* <div className="form-row visited-row">
-              <p>Have you visited this cafe?</p>
-              <div className="middle-row">
-                <label htmlFor="visited-yes">Yes</label>
-                <input
-                  type="radio"
-                  id="visited-yes"
-                  name="visited"
-                  value="Yes"
-                  checked={visited}
-                  onChange={() => setVisited(true)}
-                />
-                <label htmlFor="visited-no">No</label>
-                <input
-                  type="radio"
-                  id="visited-no"
-                  name="visited"
-                  value="No"
-                  checked={!visited}
-                  onChange={() => setVisited(false)}
-                />
-              </div>
-            </div> */}
-
-            <StyledSwitch />
-
-            <div className="form-section">
-              <div id="star-ratings" className="form-row">
-                <h2>Rate your impression of the cafe</h2>
-                <div className="ratings-container">
-                  <div className="rating-box">
-                    <p>Coffee Quality</p>
-                    <Rating
-                      name="hover-feedback"
-                      value={cafeState.coffeeValue}
-                      precision={1}
-                      // getLabelText={getLabelText}
-                      // onChange={(event, newValue) => {
-                      //   setCoffeeValue(newValue);
-                      // }}
-                      onChange={(e, newValue) => {
-                        setCafeState({
-                          ...cafeState,
-                          coffeeValue: newValue,
-                        });
-                      }}
-                      size="small"
-                      // onChangeActive={(event, newHover) => {
-                      //   setHoverCoffee(newHover);
-                      // }}
-                      emptyIcon={<StarIcon fontSize="inherit" />}
-                    />
-                    {/* {cafeState.coffeeValue !== null && (
+            {cafeState.visited && (
+              <div className="form-section">
+                <div id="star-ratings" className="form-row">
+                  <h2>Rate your impression of the cafe</h2>
+                  <div className="ratings-container">
+                    <div className="rating-box">
+                      <p>Coffee Quality</p>
+                      <Rating
+                        name="hover-feedback"
+                        value={cafeState.coffeeValue}
+                        precision={1}
+                        // getLabelText={getLabelText}
+                        // onChange={(event, newValue) => {
+                        //   setCoffeeValue(newValue);
+                        // }}
+                        onChange={(e, newValue) => {
+                          setCafeState({
+                            ...cafeState,
+                            coffeeValue: newValue,
+                          });
+                        }}
+                        size="small"
+                        // onChangeActive={(event, newHover) => {
+                        //   setHoverCoffee(newHover);
+                        // }}
+                        emptyIcon={<StarIcon fontSize="inherit" />}
+                      />
+                      {/* {cafeState.coffeeValue !== null && (
                       <p className="rating-desc">
                         {
                           labels[
@@ -141,28 +125,28 @@ const AddCafe = () => {
                         }
                       </p>
                     )} */}
-                  </div>
+                    </div>
 
-                  <div className="rating-box">
-                    <p>Atmosphere</p>
-                    <Rating
-                      name="hover-feedback"
-                      value={cafeState.vibeValue}
-                      precision={1}
-                      // getLabelText={getLabelText}
-                      onChange={(e, newValue) => {
-                        setCafeState({
-                          ...cafeState,
-                          vibeValue: newValue,
-                        });
-                      }}
-                      size="small"
-                      // onChangeActive={(event, newHover) => {
-                      //   setHoverVibe(newHover);
-                      // }}
-                      emptyIcon={<StarIcon fontSize="inherit" />}
-                    />
-                    {/* {cafeState.vibeValue !== null && (
+                    <div className="rating-box">
+                      <p>Atmosphere</p>
+                      <Rating
+                        name="hover-feedback"
+                        value={cafeState.vibeValue}
+                        precision={1}
+                        // getLabelText={getLabelText}
+                        onChange={(e, newValue) => {
+                          setCafeState({
+                            ...cafeState,
+                            vibeValue: newValue,
+                          });
+                        }}
+                        size="small"
+                        // onChangeActive={(event, newHover) => {
+                        //   setHoverVibe(newHover);
+                        // }}
+                        emptyIcon={<StarIcon fontSize="inherit" />}
+                      />
+                      {/* {cafeState.vibeValue !== null && (
                       <p className="rating-desc">
                         {
                           labels[
@@ -171,28 +155,28 @@ const AddCafe = () => {
                         }
                       </p>
                     )} */}
-                  </div>
+                    </div>
 
-                  <div className="rating-box">
-                    <p>Food/Pastries</p>
-                    <Rating
-                      name="hover-feedback"
-                      value={cafeState.foodValue}
-                      precision={1}
-                      // getLabelText={getLabelText}
-                      onChange={(e, newValue) => {
-                        setCafeState({
-                          ...cafeState,
-                          foodValue: newValue,
-                        });
-                      }}
-                      size="small"
-                      // onChangeActive={(event, newHover) => {
-                      //   setHoverFood(newHover);
-                      // }}
-                      emptyIcon={<StarIcon fontSize="inherit" />}
-                    />
-                    {/* {cafeState.foodValue !== null && (
+                    <div className="rating-box">
+                      <p>Food/Pastries</p>
+                      <Rating
+                        name="hover-feedback"
+                        value={cafeState.foodValue}
+                        precision={1}
+                        // getLabelText={getLabelText}
+                        onChange={(e, newValue) => {
+                          setCafeState({
+                            ...cafeState,
+                            foodValue: newValue,
+                          });
+                        }}
+                        size="small"
+                        // onChangeActive={(event, newHover) => {
+                        //   setHoverFood(newHover);
+                        // }}
+                        emptyIcon={<StarIcon fontSize="inherit" />}
+                      />
+                      {/* {cafeState.foodValue !== null && (
                       <p className="rating-desc">
                         {
                           labels[
@@ -201,38 +185,25 @@ const AddCafe = () => {
                         }
                       </p>
                     )} */}
+                    </div>
                   </div>
                 </div>
+                <div className="form-row">
+                  <label htmlFor="details">Misc Details</label>
+                  <textarea
+                    name="details"
+                    className="form-input"
+                    value={cafeState.details}
+                    onChange={(e) => {
+                      setCafeState({
+                        ...cafeState,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-
-            <div className="form-section">
-              {/* <div className="form-row">
-                <label htmlFor="neighborhood">Neighborhood</label>
-                <input
-                  type="text"
-                  name="location"
-                  className="form-input"
-                  value={neighborhood}
-                  onChange={(e) => setNeighborhood(e.target.value)}
-                />
-              </div> */}
-
-              <div className="form-row">
-                <label htmlFor="details">Misc Details</label>
-                <textarea
-                  name="details"
-                  className="form-input"
-                  value={cafeState.details}
-                  onChange={(e) => {
-                    setCafeState({
-                      ...cafeState,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
-              </div>
-            </div>
+            )}
           </div>
           <div className="btn-container">
             <button type="submit" className="add-btn">

@@ -1,15 +1,13 @@
-import { useState } from "react";
 import { styled } from "@mui/material/styles";
-import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-const Android12Switch = styled(Switch)(({ theme }) => ({
-  padding: 8,
+const SwitchComponent = styled(Switch)(({ theme }) => ({
+  padding: 4,
   "& .MuiSwitch-track": {
-    borderRadius: 22 / 2,
+    borderRadius: 16,
     "&:before, &:after": {
       content: '""',
       position: "absolute",
@@ -33,25 +31,20 @@ const Android12Switch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-const SwitchGroup = () => {
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
-
+const StyledSwitch = ({ onData, visited }) => {
   const handleSwitchChange = () => {
-    setIsSwitchOn(!isSwitchOn);
+    onData(!visited);
   };
 
   return (
-    <div className="form-row">
+    <div className="form-row visited-row">
       <p className="visited-question">Have you visited this cafe?</p>
       <FormControlLabel
         control={
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <Typography>Not yet</Typography>
-            <Android12Switch
-              checked={isSwitchOn}
-              onChange={handleSwitchChange}
-            />
-            <Typography>Yes</Typography>
+          <Stack direction="row" alignItems="center" spacing={1.5}>
+            <p>Not yet</p>
+            <SwitchComponent checked={visited} onChange={handleSwitchChange} />
+            <p>Yes</p>
           </Stack>
         }
       />
@@ -59,4 +52,4 @@ const SwitchGroup = () => {
   );
 };
 
-export default SwitchGroup;
+export default StyledSwitch;

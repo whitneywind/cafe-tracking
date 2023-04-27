@@ -21,6 +21,7 @@ const Wrapper = styled.div`
   h2 {
     font-size: 1.1rem;
     font-weight: 500;
+    text-align: center;
   }
   p {
     font-size: 1rem;
@@ -49,6 +50,7 @@ const Wrapper = styled.div`
   }
   .visited-question {
     font-size: 1.2rem;
+    text-align: center;
   }
   .form-section {
     display: flex;
@@ -59,6 +61,7 @@ const Wrapper = styled.div`
   }
   .visited-row {
     width: 350px;
+    text-align: center;
   }
   .form-row {
     margin: 0 auto;
@@ -98,27 +101,6 @@ const Wrapper = styled.div`
   .alert {
     font-size: 1.5rem;
   }
-  /* @media (min-width: 992px) {
-    .form-container {
-      max-width: 90%;
-      margin: 0 auto;
-      background: var(--mainColor1Alt);
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-        0 1px 2px 0 rgba(0, 0, 0, 0.06);
-      padding: 1rem 2rem 2rem;
-      font-size: 1.2rem;
-      border-radius: 0.5rem;
-      letter-spacing: 1px;
-    }
-    .main-form {
-      display: flex;
-      gap: 1rem;
-    }
-    .form-section {
-      display: flex;
-      flex-direction: row;
-    }
-  } */
 `;
 
 export default Wrapper;
