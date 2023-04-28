@@ -56,16 +56,37 @@ export const login = async (req, res, next) => {
   res.status(200).json({ user, token });
 };
 
-export const update = async (req, res) => {
-  const { email, username, location } = req.body;
-  if (!email || !username) {
-    throw new Error("please provide all info");
-  }
+// export const login = async (req, res) => {
+//   const { email, password } = req.body;
+//   if (!email || !password) {
+//     throw new BadRequestError("please provide all values");
+//   }
+//   const user = await User.findOne({ email }).select("+password");
 
-  const filter = { email };
-  const update = { email, username, location };
-  const options = { new: true };
+//   if (!user) {
+//     throw new UnauthenticatedError("invalid credentials");
+//   }
 
-  const user = await User.findOneAndUpdate(filter, update, options);
-  res.send(user);
-};
+//   const isPasswordCorrect = await user.comparePassword(password);
+//   if (!isPasswordCorrect) {
+//     throw new UnauthenticatedError("invalid credentials");
+//   }
+//   const token = user.createJWT();
+
+//   user.password = undefined;
+//   res.status(StatusCodes.OK).json({ user, token, location: user.location });
+// };
+
+// export const update = async (req, res) => {
+//   const { email, username, location } = req.body;
+//   if (!email || !username) {
+//     throw new Error("please provide all info");
+//   }
+
+//   const filter = { email };
+//   const update = { email, username, location };
+//   const options = { new: true };
+
+//   const user = await User.findOneAndUpdate(filter, update, options);
+//   res.send(user);
+// };

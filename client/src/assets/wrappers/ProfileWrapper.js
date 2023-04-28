@@ -15,9 +15,15 @@ const Wrapper = styles.div`
     width: clamp(200px, 50%, 450px);
     margin: 2rem auto;
   }
+  p {
+    font-size: 1rem;
+    letter-spacing: normal;
+    margin: 0;
+  }
   h1 {
     font-size: 1.2rem;
     font-weight: 500;
+    line-height: normal;
   }
   .form-main {
     display: flex;
@@ -33,7 +39,7 @@ const Wrapper = styles.div`
   }
   .form-input {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 8px 8px 4px;
     width: 350px;
     letter-spacing: 1px;

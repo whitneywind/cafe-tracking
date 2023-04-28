@@ -4,19 +4,21 @@ import { useEffect } from "react";
 import Cafe from "./CafeComponent";
 
 const Cafes = () => {
-  const { cafes, totalCafes, getAllCafes, searchString } = useAppContext();
+  const { cafes, totalCafes, getAllCafes, searchString, visitedFilter } =
+    useAppContext();
 
   useEffect(() => {
-    if (searchString === "") {
-      getAllCafes();
-    } else {
-      setTimeout(() => {
-        getAllCafes(searchString);
-      }, 2000);
-    }
-  }, [searchString]);
+    // if (searchString === "") {
+    //   getAllCafes();
+    // } else {
+    //   setTimeout(() => {
+    //     getAllCafes(searchString);
+    //   }, 2000);
+    // }
+    getAllCafes();
+  }, [searchString, visitedFilter]);
 
-  // TO-DO: add a Loading option for this and other pages in global state using skeleton components
+  // TO-DO: add a Loading option for this and other pages in global state using skeleton
 
   return (
     <Wrapper>

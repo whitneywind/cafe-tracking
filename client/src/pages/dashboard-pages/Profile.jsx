@@ -18,6 +18,7 @@ const Profile = () => {
     <Wrapper>
       <form onSubmit={handleSubmit}>
         <h1>Profile</h1>
+        <p>View or update your information here!</p>
         <hr />
         <div className="form-main">
           <div className="form-row">

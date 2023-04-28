@@ -21,7 +21,7 @@ const Navbar = () => {
           <BsReverseLayoutTextSidebarReverse />
         </button>
         <div className="logo-container">
-          <Logo className="logo" />
+          {/* <Logo className="logo" /> */}
           <p className="logo-text">Dashboard</p>
         </div>
         <div className="btn-container">
@@ -73,7 +73,7 @@ const Wrapper = styled.nav`
     background: transparent;
     border-color: transparent;
     font-size: 2.5rem;
-    color: var(--mainBlack);
+    color: var(--mainColor4);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -95,8 +95,8 @@ const Wrapper = styled.nav`
     text-decoration: none;
     border-radius: 0.25rem;
     border: 2px solid var(--mainColor4);
-    box-shadow: 1px 1px 0 var(--mainColor4), 2px 2px 0 var(--mainColor4),
-      3px 3px 0 var(--mainColor4);
+    box-shadow: 1px 1px 0 var(--mainColor4), 1.5px 1px 0 var(--mainColor4),
+      1px 1px 0 var(--mainColor4);
   }
   .btn:active {
     box-shadow: 0 0 0 0;
@@ -130,7 +130,7 @@ const Wrapper = styled.nav`
     flex-direction: column;
   }
   .logo-text {
-    display: block;
+    display: none;
     margin: 0;
     font-size: 1.5rem;
     font-weight: 500;

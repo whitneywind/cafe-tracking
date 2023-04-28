@@ -12,6 +12,7 @@ const CafeComponent = ({
   vibeValue,
   foodValue,
   _id,
+  visited,
 }) => {
   const { deleteCafe } = useAppContext();
 
@@ -39,17 +40,17 @@ const CafeComponent = ({
         <div className="coffee rate">
           <p className="rate-title">Coffee</p>
           <CiStar className="star" />
-          <p className="score">{coffeeValue}/5</p>
+          {visited && <p className="score">{coffeeValue}/5</p>}
         </div>
         <div className="vibe rate">
           <p className="rate-title">Vibe</p>
           <CiStar className="star" />
-          <p className="score">{vibeValue}/5</p>
+          {visited && <p className="score">{vibeValue}/5</p>}
         </div>
         <div className="food rate">
-          <p className="rate-title">Pastries</p>
+          <p className="rate-title">Food</p>
           <CiStar className="star" />
-          <p className="score">{foodValue}/5</p>
+          {visited && <p className="score">{foodValue}/5</p>}
         </div>
       </div>
     </Wrapper>
@@ -128,7 +129,7 @@ const Wrapper = styled.main`
   }
   .ratings {
     display: flex;
-    width: 100%;
+    width: 60%;
     margin: 0 auto;
     justify-content: space-around;
   }
@@ -137,7 +138,7 @@ const Wrapper = styled.main`
     text-align: center;
   }
   .rate-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
     margin-bottom: 0;
   }

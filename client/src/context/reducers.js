@@ -120,6 +120,11 @@ const reducer = (state, action) => {
         ...state,
         [action.payload.name]: action.payload.value,
       };
+    case "HANDLE_CHANGE":
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value,
+      };
     default:
       throw new Error(`no such action: ${action.type}`);
   }

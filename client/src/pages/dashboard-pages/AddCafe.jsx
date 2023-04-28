@@ -4,7 +4,7 @@ import Alert from "../../components/Alert";
 import { useAppContext } from "../../context/appContext";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
-import StyledSwitch from "../../components/styledSwitch";
+import StyledSwitch from "../../components/StyledSwitch";
 
 const AddCafe = () => {
   const defaultCafeState = {
@@ -31,11 +31,13 @@ const AddCafe = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(cafeState);
+
     addCafe(cafeState);
 
     setTimeout(() => {
       setCafeState(defaultCafeState);
-    }, 500);
+    }, 3000);
   };
 
   // TO-DO: make the Ratings components into reusable FormRow components (map into these components using separate form question data file)

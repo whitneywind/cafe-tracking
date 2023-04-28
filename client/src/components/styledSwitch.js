@@ -2,7 +2,6 @@ import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 
 const SwitchComponent = styled(Switch)(({ theme }) => ({
   padding: 4,
@@ -33,7 +32,9 @@ const SwitchComponent = styled(Switch)(({ theme }) => ({
 
 const StyledSwitch = ({ onData, visited }) => {
   const handleSwitchChange = () => {
-    onData(!visited);
+    visited = !visited;
+    onData();
+    console.log(visited);
   };
 
   return (

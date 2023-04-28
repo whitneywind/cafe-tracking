@@ -1,30 +1,31 @@
-import styled from "styled-components"
-import { useAppContext } from "../context/appContext"
-import MenuLinks from "./MenuLinks"
-import { CgCloseR } from "react-icons/cg"
+import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
+import MenuLinks from "./MenuLinks";
+import { CgCloseR } from "react-icons/cg";
 
 const SmallSidebar = () => {
-    const { showSidebar, toggleSmallSidebar } = useAppContext();
+  const { showSidebar, toggleSmallSidebar } = useAppContext();
   return (
     <Wrapper>
-        <div className={showSidebar ? 'sidebar-container show-sidebar' : 'sidebar-container'}>
-            <div className="content">
-                <button 
-                    className="close-btn"
-                    onClick={toggleSmallSidebar}
-                >
-                    <CgCloseR />
-                </button>
-                <header>
-                    <p>Menu</p>
-                </header>
-                <MenuLinks />
-            </div>
+      <div
+        className={
+          showSidebar ? "sidebar-container show-sidebar" : "sidebar-container"
+        }
+      >
+        <div className="content">
+          <button className="close-btn" onClick={toggleSmallSidebar}>
+            <CgCloseR />
+          </button>
+          <header>
+            <p>Menu</p>
+          </header>
+          <MenuLinks />
         </div>
+      </div>
     </Wrapper>
-  )
-}
-export default SmallSidebar
+  );
+};
+export default SmallSidebar;
 
 const Wrapper = styled.aside`
   @media (min-width: 992px) {
@@ -48,10 +49,10 @@ const Wrapper = styled.aside`
   }
   .content {
     background: #fdf7f6;
-    width: 75vw;
-    height: 80vh;
+    width: 60vw;
+    height: 70vh;
     border-radius: 0.25rem;
-    padding: 4rem 2rem;
+    padding: 2rem;
     position: relative;
     display: flex;
     align-items: center;
@@ -97,10 +98,4 @@ const Wrapper = styled.aside`
     place-items: center;
     transition: 500ms ease-in-out all;
   }
-  .active {
-    color: var(--mainColor4);
-  }
-  .active .icon {
-    color: var(--mainColor5);
-  }
-`
+`;

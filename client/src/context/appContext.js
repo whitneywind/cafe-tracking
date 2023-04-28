@@ -17,6 +17,7 @@ const initialState = {
   cafes: [],
   totalCafes: 0,
   searchString: "",
+  visitedFilter: "all",
 };
 
 const AppContext = createContext();
@@ -76,8 +77,6 @@ const AppProvider = ({ children }) => {
 
   const loginUser = async (currentUser) => {
     dispatch({ type: "LOGIN_USER_BEGIN" });
-
-    // if no accounts with that email
 
     try {
       const response = await axios.post("/api/v1/auth/login", currentUser);
@@ -154,14 +153,21 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
-  const getAllCafes = async (searchInput) => {
-    let url = !searchInput ? "/cafes" : `/cafes?search=${searchInput}`;
+  const getAllCafes = async () => {
+    const { searchString, visitedFilter } = state;
+
+    let url = `/cafes?status=${visitedFilter}`;
+
+    if (searchString) {
+      url += `&search=${searchString}`;
+    }
+
+    // let url = !searchInput ? "/cafes" : `/cafes?search=${searchInput}`;
 
     dispatch({ type: "GET_CAFES_BEGIN" });
     try {
       const { data } = await authReq.get(url);
       const { cafes, totalCafes } = data;
-      console.log(cafes);
       dispatch({
         type: "GET_CAFES_SUCCESS",
         payload: {
@@ -197,6 +203,16 @@ const AppProvider = ({ children }) => {
     });
   };
 
+  const handleChange = ({ name, value }) => {
+    dispatch({
+      type: "HANDLE_CHANGE",
+      payload: {
+        name,
+        value,
+      },
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -214,6 +230,7 @@ const AppProvider = ({ children }) => {
         getAllCafes,
         deleteCafe,
         updateSearchString,
+        handleChange,
       }}
     >
       {children}

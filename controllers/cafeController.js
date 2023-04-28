@@ -1,6 +1,7 @@
 import Cafe from "../models/CafeModel.js";
 
 export const createCafe = async (req, res, next) => {
+  console.log(req.user);
   req.body.createdBy = req.user.userId;
   const cafe = await Cafe.create(req.body);
   res.status(201).json({ cafe });
@@ -19,11 +20,17 @@ export const deleteAll = async (req, res, next) => {
 
 export const getAllCafes = async (req, res, next) => {
   try {
-    const { search } = req.query;
+    const { search, status } = req.query;
     const filter = { createdBy: req.user.userId };
 
     if (search) {
       filter.cafeName = { $regex: search, $options: "i" };
+    }
+
+    if (status === "visited") {
+      filter.visited = true;
+    } else if (status === "unvisited") {
+      filter.visited = false;
     }
 
     const cafes = await Cafe.find(filter);

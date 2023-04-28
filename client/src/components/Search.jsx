@@ -1,19 +1,26 @@
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 const Search = () => {
-  let { searchString, updateSearchString } = useAppContext();
+  let { searchString, handleChange } = useAppContext();
 
   const handleSearch = (e) => {
-    updateSearchString({ name: e.target.name, value: e.target.value });
+    handleChange({
+      name: e.target.name,
+      value: e.target.value,
+    });
   };
+
   return (
     <Wrapper>
       <h1>Find your Cafes</h1>
       <hr />
       <div className="search-container">
         <div className="form-row">
-          <label htmlFor="searchString">Search</label>
+          <label htmlFor="searchString">Filter by Cafe Name</label>
           <input
             type="text"
             name="searchString"
@@ -22,6 +29,27 @@ const Search = () => {
             onChange={handleSearch}
             required
           />
+        </div>
+        <div className="form-row">
+          <label htmlFor="visitedFilter">Filter by Visited</label>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="visitedFilter"
+            onChange={handleSearch}
+          >
+            <FormControlLabel value="all" control={<Radio />} label="All" />
+            <FormControlLabel
+              value="unvisited"
+              control={<Radio />}
+              label="Unvisited"
+            />
+            <FormControlLabel
+              value="visited"
+              control={<Radio />}
+              label="Visited"
+            />
+          </RadioGroup>
         </div>
       </div>
     </Wrapper>

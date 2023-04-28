@@ -32,6 +32,9 @@ const CafeSchema = new mongoose.Schema(
     foodValue: {
       type: Number,
     },
+    visited: {
+      type: Boolean,
+    },
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",
