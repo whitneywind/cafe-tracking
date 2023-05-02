@@ -19,7 +19,7 @@ const SmallSidebar = () => {
           <header>
             <p>Menu</p>
           </header>
-          <MenuLinks />
+          <MenuLinks toggleSidebar={toggleSmallSidebar} />
         </div>
       </div>
     </Wrapper>
@@ -50,7 +50,7 @@ const Wrapper = styled.aside`
   .content {
     background: #fdf7f6;
     width: 60vw;
-    height: 70vh;
+    height: 75vh;
     border-radius: 0.25rem;
     padding: 2rem;
     position: relative;

@@ -9,16 +9,18 @@
 /* variables */
 :root {
   --mainFont: 'Playfair Display', Serif;
-  --mainColor1: #f9f5f4;
-  --mainColor1Alt: #F8F3F2;
-  --mainColor2: #DDC8C4;
-  --mainColor3: #896A67;
-  --mainColor4: #6B4D57;
-  --mainColor5: #b8807b;
+  --mainColor1: #F3F6F6;
+  /* --mainColor1Alt: #F8F3F2; */
+  --mainColor1Alt: #F3F6F6;
+  --mainColor2: #A7CECB;
+  --mainColor3: #587474;
+  --mainColor4: #354646;
+  --mainColor5: #DCE5E5;
   --mainBlack: #13070C;
-  --iconBrown: #412e35;
-  --mainColor5Light: #d3938d;
-  --mainBackgroundColor: #e9d3ce;
+  --iconBrown: #A7CECB;
+  --mainColor5Light: #c3e1de;
+  /* --mainBackgroundColor: #e9d3ce; */
+  --mainBackgroundColor: #8BA6A9;
 
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),

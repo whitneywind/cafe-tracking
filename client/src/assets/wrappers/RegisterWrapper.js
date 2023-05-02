@@ -5,7 +5,7 @@ const Wrapper = styled.section`
     width: 50%;
     max-width: 450px;
     min-width: 370px;
-    background-color: var(--mainColor2);
+    background-color: var(--mainColor5);
     align-items: center;
     box-shadow: var(--shadow-3);
     padding: 3rem;
@@ -13,7 +13,7 @@ const Wrapper = styled.section`
     transition: all 0.3s ease-in;
     border-radius: 0.25rem;
     color: var(--mainBlack);
-    border-top: 8px solid var(--mainColor5);
+    border-top: 8px solid var(--mainColor4);
   }
   .form:hover {
     box-shadow: var(--shadow-4);
@@ -48,8 +48,8 @@ const Wrapper = styled.section`
   .btn {
     cursor: pointer;
     width: 100%;
-    color: var(--mainBlack);
-    background-color: #b78e8a;
+    color: white;
+    background-color: var(--mainColor4);
     box-shadow: var(--shadow-1);
     border: transparent;
     letter-spacing: 1px;
