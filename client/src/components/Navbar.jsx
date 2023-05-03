@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
-import Logo from "./Logo";
 import { BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { RiUserHeartLine } from "react-icons/ri";

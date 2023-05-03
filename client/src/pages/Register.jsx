@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Wrapper from "../assets/wrappers/RegisterWrapper.js";
 import coffeeLogo from "../assets/images/coffee.svg";
-import Alert from "../components/Alert";
-import { useAppContext } from "../context/appContext.js";
+import Alert from "../components/Alert.jsx";
+import { useAppContext } from "../context/appContext";
 import { useNavigate } from "react-router-dom";
 
 const initialUserState = {

@@ -9,6 +9,7 @@ const Cafes = () => {
 
   useEffect(() => {
     getAllCafes();
+    // eslint-disable-next-line
   }, [searchString, visitedFilter]);
 
   // TO-DO: add a Loading option for this and other pages in global state using skeleton
