@@ -8,13 +8,6 @@ const Cafes = () => {
     useAppContext();
 
   useEffect(() => {
-    // if (searchString === "") {
-    //   getAllCafes();
-    // } else {
-    //   setTimeout(() => {
-    //     getAllCafes(searchString);
-    //   }, 2000);
-    // }
     getAllCafes();
   }, [searchString, visitedFilter]);
 

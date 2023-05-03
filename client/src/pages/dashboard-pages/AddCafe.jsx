@@ -31,8 +31,6 @@ const AddCafe = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(cafeState);
-
     addCafe(cafeState);
 
     setTimeout(() => {
