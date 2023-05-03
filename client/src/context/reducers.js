@@ -90,7 +90,7 @@ const reducer = (state, action) => {
         ...state,
         showAlert: true,
         alertType: "success",
-        alertText: "Cafe details submitted!",
+        alertText: "Cafe submitted!",
       };
     case "GET_CAFES_BEGIN":
       return {

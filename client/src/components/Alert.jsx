@@ -12,15 +12,17 @@ const Alert = () => {
 
 const Wrapper = styled.div`
   .alert {
-    background-color: #cccaca;
+    background-color: #7c7b7b;
+    font-family: "Arial", sans-serif;
+    color: white;
     letter-spacing: 1px;
     border-radius: 6px;
     border: 2px solid gray;
     text-align: center;
     padding: 0.25rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    width: 200px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    width: 255px;
     margin: 0 auto;
     margin-top: 2rem;
   }
@@ -29,8 +31,8 @@ const Wrapper = styled.div`
     border: 2px solid #84231a;
   }
   .alert-success {
-    background-color: #73ac7b;
-    border: 2px solid #70a678;
+    background-color: rgb(142 187 171);
+    border: 2px solid rgb(224 233 225);
   }
 `;
 

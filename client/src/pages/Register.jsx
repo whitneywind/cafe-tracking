@@ -87,7 +87,7 @@ const Register = () => {
             email
           </label>
           <input
-            type="text"
+            type="email"
             name="email"
             value={userValues.email}
             onChange={onChange}
